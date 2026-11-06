@@ -57,7 +57,7 @@ export function Hero({ onNavigate, onOpenBooking }) {
 
             {/* Supporting Description */}
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl">
-              LeadHive AI understands customer conversations, identifies buying intent, qualifies prospects and prioritizes opportunities — giving your sales team the intelligence to focus on closing.
+              LeadHive AI understands customer conversations, identifies buying intent, qualifies prospects and prioritizes opportunities, giving your sales team the intelligence to focus on closing.
             </p>
 
             {/* CTA Buttons */}

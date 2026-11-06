@@ -47,10 +47,10 @@ export function App() {
     setActiveRoute(route);
     if (route === 'experience') {
       window.history.pushState(null, '', '#experience');
-      document.title = 'LeadHive AI — Interactive AI Experience Centre';
+      document.title = 'LeadHive AI: Interactive AI Experience Centre';
     } else {
       window.history.pushState(null, '', '#');
-      document.title = 'LeadHive AI — Autonomous Sales Intelligence Platform';
+      document.title = 'LeadHive AI: Autonomous Sales Intelligence Platform';
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

@@ -47,7 +47,7 @@ export function LeadDashboardPreview({ onNavigate }) {
       temperature: 'Follow-up Required',
       temperatureColor: 'blue',
       budget: 'PKR 22 Million',
-      timeline: '6–12 Months Planning',
+      timeline: '6-12 Months Planning',
       recommendedAction: 'Trigger automated 36-month installment calculator and schedule nurturing cadence.',
       tags: ['Nurture Cadence', 'Payment Calculator Sent']
     }

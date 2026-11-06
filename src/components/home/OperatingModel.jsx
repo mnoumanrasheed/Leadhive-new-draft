@@ -45,7 +45,7 @@ export function OperatingModel({ onNavigate }) {
       icon: Trophy,
       description: 'Score opportunities and recommend the next best sales action.',
       details: [
-        'Multi-factor lead score (0–100)',
+        'Multi-factor lead score (0-100)',
         'Hot, Warm, Follow-up classification',
         'Dossier prepared for sales team handover'
       ],

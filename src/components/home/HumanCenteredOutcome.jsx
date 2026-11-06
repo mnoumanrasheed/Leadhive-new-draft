@@ -22,7 +22,7 @@ export function HumanCenteredOutcome({ onNavigate, onOpenBooking }) {
             </h2>
 
             <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-              LeadHive AI does not replace your sales team — it empowers them. By autonomously handling repetitive inquiries, qualification questions and scoring in the background, your closers step in at the moment of highest intent, armed with complete context.
+              LeadHive AI does not replace your sales team, it empowers them. By autonomously handling repetitive inquiries, qualification questions and scoring in the background, your closers step in at the moment of highest intent, armed with complete context.
             </p>
 
             {/* Benefit pillars */}
@@ -119,7 +119,7 @@ export function HumanCenteredOutcome({ onNavigate, onOpenBooking }) {
             {/* Supporting Micro-Badge */}
             <div className="mt-3 text-center">
               <p className="text-xs text-slate-400 italic">
-                Simulated business interaction — Demonstrating human decision-making and consultative sales enablement.
+                Simulated business interaction: Demonstrating human decision-making and consultative sales enablement.
               </p>
             </div>
           </div>

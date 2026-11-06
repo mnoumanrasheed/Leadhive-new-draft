@@ -177,7 +177,7 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         
         {/* ========================================================
-            SCREEN 01 — INDUSTRY SCENARIO SELECTION
+            SCREEN 01: INDUSTRY SCENARIO SELECTION
         ======================================================== */}
         {currentScreen === 1 && (
           <div className="space-y-8 animate-fadeIn max-w-5xl mx-auto">
@@ -185,7 +185,7 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
             <div className="text-center space-y-4 pt-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-brand-800 text-xs font-semibold">
                 <Sparkles className="w-3.5 h-3.5 text-brand-600" />
-                <span>Screen 01 of 06 — Business Context Configuration</span>
+                <span>Screen 01 of 06: Business Context Configuration</span>
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
                 See How Every Conversation Becomes an Opportunity.
@@ -291,7 +291,7 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
         )}
 
         {/* ========================================================
-            SCREEN 02 — MULTI-CHANNEL CONVERSATION FEED
+            SCREEN 02: MULTI-CHANNEL CONVERSATION FEED
         ======================================================== */}
         {currentScreen === 2 && (
           <div className="space-y-6 animate-fadeIn max-w-5xl mx-auto">
@@ -407,7 +407,7 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
         )}
 
         {/* ========================================================
-            SCREEN 03 — AUTONOMOUS AI INTELLIGENCE (CORE 3-PANEL DEMO)
+            SCREEN 03: AUTONOMOUS AI INTELLIGENCE (CORE 3-PANEL DEMO)
         ======================================================== */}
         {currentScreen === 3 && (
           <div className="space-y-6 animate-fadeIn">
@@ -484,7 +484,7 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
             <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-start">
               
               {/* ==========================================
-                  LEFT PANEL — CHANNEL CONVERSATIONS (3 cols)
+                  LEFT PANEL: CHANNEL CONVERSATIONS (3 cols)
               ========================================== */}
               <div className={`md:col-span-3 space-y-3 ${activeMobileTab !== 'channels' ? 'hidden md:block' : 'block'}`}>
                 <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-subtle">
@@ -549,7 +549,7 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
               </div>
 
               {/* ==========================================
-                  CENTRE PANEL — CONVERSATION & TIMELINE (5 cols)
+                  CENTRE PANEL: CONVERSATION & TIMELINE (5 cols)
               ========================================== */}
               <div className={`md:col-span-5 space-y-4 ${activeMobileTab !== 'conversation' ? 'hidden md:block' : 'block'}`}>
                 
@@ -667,7 +667,7 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
               </div>
 
               {/* ==========================================
-                  RIGHT PANEL — LEAD INTELLIGENCE (4 cols)
+                  RIGHT PANEL: LEAD INTELLIGENCE (4 cols)
               ========================================== */}
               <div className={`md:col-span-4 space-y-4 ${activeMobileTab !== 'intelligence' ? 'hidden md:block' : 'block'}`}>
                 <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-subtle space-y-4">
@@ -785,7 +785,7 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
         )}
 
         {/* ========================================================
-            SCREEN 04 — OPPORTUNITY DASHBOARD
+            SCREEN 04: OPPORTUNITY DASHBOARD
         ======================================================== */}
         {currentScreen === 4 && (
           <div className="space-y-6 animate-fadeIn max-w-6xl mx-auto">
@@ -995,7 +995,7 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
         )}
 
         {/* ========================================================
-            SCREEN 05 — SALES HANDOVER SIMULATION
+            SCREEN 05: SALES HANDOVER SIMULATION
         ======================================================== */}
         {currentScreen === 5 && (
           <div className="space-y-6 animate-fadeIn max-w-4xl mx-auto">
@@ -1127,7 +1127,7 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
         )}
 
         {/* ========================================================
-            SCREEN 06 — CONVERSION CTA
+            SCREEN 06: CONVERSION CTA
         ======================================================== */}
         {currentScreen === 6 && (
           <div className="space-y-8 animate-fadeIn max-w-4xl mx-auto pt-4 text-center">
@@ -1135,7 +1135,7 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
             <div className="space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-brand-800 text-xs font-semibold uppercase tracking-wider">
                 <Sparkles className="w-3.5 h-3.5 text-brand-600" />
-                <span>Screen 06 of 06 — Realize the Value</span>
+                <span>Screen 06 of 06: Realize the Value</span>
               </div>
 
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
