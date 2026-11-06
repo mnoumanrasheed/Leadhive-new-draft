@@ -38,6 +38,7 @@ export const INDUSTRIES = [
         initialIntent: 'Property Purchase',
         temperature: 'Hot',
         score: 92,
+        recommendedAction: 'Arrange a property consultation and share matching listings in DHA Sector F.',
         messages: [
           { sender: 'customer', text: 'Salam, I am looking to buy a ready 5-marla house in DHA Islamabad. Budget is around 30 million PKR. Can we visit this Saturday?', time: '10:14 AM' },
           { sender: 'ai', text: 'Wa Alaikum Assalam Tariq. We have 3 verified 5-marla houses in DHA Islamabad Sector E and F matching your PKR 30M budget. Are you looking for immediate possession or newly constructed?', time: '10:14 AM' },
@@ -76,6 +77,7 @@ export const INDUSTRIES = [
         initialIntent: 'High-yield Rental Investment',
         temperature: 'Hot',
         score: 89,
+        recommendedAction: 'Dispatch overseas investor prospectus & schedule Zoom with investment partner.',
         messages: [
           { sender: 'customer', text: 'Hi, I saw your post on high-yield luxury rental apartments in Downtown. What is the guaranteed gross yield?', time: '09:58 AM' },
           { sender: 'ai', text: 'Hello Sarah! Our Downtown luxury units currently deliver 8.4% to 9.2% gross rental yields with guaranteed tenant management. Are you looking for 1-bed or 2-bed units?', time: '09:59 AM' },
@@ -110,6 +112,7 @@ export const INDUSTRIES = [
         initialIntent: 'Duplex Penthouse Inquiry',
         temperature: 'Warm',
         score: 78,
+        recommendedAction: 'Direct message penthouse floor plan and unit specifications.',
         messages: [
           { sender: 'customer', text: 'Love the terrace pool on the reel! Can you DM the floor plan and price for the penthouse?', time: '09:40 AM' },
           { sender: 'ai', text: 'Thanks Ali! The Sky Villa Duplex features 4,200 sq ft with private heated plunge pool. Pricing starts at PKR 65M. What is your estimated move-in timeline?', time: '09:41 AM' }
@@ -141,6 +144,7 @@ export const INDUSTRIES = [
         initialIntent: 'Commercial Corner Plot',
         temperature: 'Warm',
         score: 75,
+        recommendedAction: 'Share verified DHA Phase 2 commercial corner plot listings & pricing.',
         messages: [
           { sender: 'customer', text: '[Comment on DHA Phase 2 Walkthrough Video] Excellent breakdown. Do you have ready commercial corner plots available in Commercial Sector A? Budget is PKR 50M.', time: '09:25 AM' },
           { sender: 'ai', text: 'Thank you Kamran! Yes, we have two 4-marla commercial plots facing the main boulevard in Sector A, directly within that budget. Please check your notification or click our consultation link to review the plot numbers.', time: '09:27 AM' }
@@ -172,6 +176,7 @@ export const INDUSTRIES = [
         initialIntent: 'Installment Plan Inquiry',
         temperature: 'Follow-up Required',
         score: 64,
+        recommendedAction: 'Dispatch 36-month installment calculator & payment schedule.',
         messages: [
           { sender: 'customer', text: '[Comment on Smart Home Villa Showcase] What is the down payment and monthly installment for this villa?', time: '09:10 AM' },
           { sender: 'ai', text: 'Hi Zainab! Down payment is 20% (approx PKR 4.5M) with 36 interest-free monthly installments. We have sent the brochure to the link in our bio for instant download!', time: '09:12 AM' }
@@ -203,6 +208,7 @@ export const INDUSTRIES = [
         initialIntent: 'Direct Consultation Request',
         temperature: 'Hot',
         score: 95,
+        recommendedAction: 'Handover to Senior Field Officer for tomorrow 10:00 AM on-site inspection.',
         messages: [
           { sender: 'customer', text: 'Hello, I have been comparing 3 properties on your website in DHA Phase 5. Can I get a verified title deed check and book a site visit for tomorrow morning?', time: '10:18 AM' },
           { sender: 'ai', text: 'Welcome Bilal! All three listings in DHA Phase 5 have 100% verified non-encumbrance certificates and direct transfer deeds. I have reserved tomorrow 10:00 AM for your guided inspection. What is the best contact number for the officer to meet you at the DHA Gate?', time: '10:19 AM' },
@@ -433,7 +439,7 @@ export const INDUSTRIES = [
     name: 'B2B & E-commerce',
     tagline: 'Online shoppers and bulk corporate buyers converted into qualified transactions',
     icon: 'ShoppingBag',
-    image: 'https://images.unsplash.com/photo-1556742049-0a67e5572243?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
     description: 'Commerce representative assisting corporate procurement and custom order requests.',
     defaultLead: {
       prospect: 'Shahmeer Hashmi',

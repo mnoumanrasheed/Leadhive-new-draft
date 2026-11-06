@@ -905,7 +905,7 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
                             </span>
                           </td>
                           <td className="py-3 px-4 text-emerald-800 font-medium max-w-xs truncate">
-                            {currentIndustry.defaultLead.recommendedAction}
+                            {ch.recommendedAction || currentIndustry.defaultLead.recommendedAction}
                           </td>
                         </tr>
                       );
@@ -916,61 +916,80 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
             </div>
 
             {/* Opportunity Detail Panel (Selected Row) */}
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-subtle space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-                <div className="flex items-center gap-2">
-                  <UserCheck className="w-5 h-5 text-brand-600" />
-                  <h4 className="text-base font-bold text-slate-900">
-                    Opportunity Dossier: {selectedDashboardOpp?.customer.name || currentIndustry.defaultLead.prospect}
-                  </h4>
-                </div>
-                <span className="text-xs font-semibold text-rose-700 bg-rose-50 px-2.5 py-1 rounded-full border border-rose-200">
-                  Priority Rank #1
-                </span>
-              </div>
+            {(() => {
+              const activeOpp = selectedDashboardOpp || currentIndustry.channels[0] || {
+                customer: { name: currentIndustry.defaultLead.prospect },
+                channel: currentIndustry.defaultLead.channel,
+                score: currentIndustry.defaultLead.score,
+                temperature: currentIndustry.defaultLead.temperature,
+                attributes: {
+                  budget: currentIndustry.defaultLead.budget,
+                  timeline: currentIndustry.defaultLead.timeline,
+                  location: currentIndustry.defaultLead.location
+                },
+                recommendedAction: currentIndustry.defaultLead.recommendedAction
+              };
+              const oppAttr = activeOpp.attributes || {};
+              return (
+                <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-subtle space-y-4">
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+                    <div className="flex items-center gap-2">
+                      <UserCheck className="w-5 h-5 text-brand-600" />
+                      <h4 className="text-base font-bold text-slate-900">
+                        Opportunity Dossier: {activeOpp.customer.name}
+                      </h4>
+                    </div>
+                    <span className={`text-xs font-semibold px-2.5 py-1 rounded-full border ${
+                      activeOpp.temperature === 'Hot' ? 'text-rose-700 bg-rose-50 border-rose-200' : 'text-blue-700 bg-blue-50 border-blue-200'
+                    }`}>
+                      {activeOpp.temperature} Lead ({activeOpp.score}/100)
+                    </span>
+                  </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
-                  <p className="font-bold text-slate-500 uppercase tracking-wider text-[10px]">Conversation Summary</p>
-                  <p className="mt-1 text-slate-800 leading-relaxed font-medium">
-                    Prospect engaged via {selectedDashboardOpp?.channel || 'WhatsApp Business'}, confirmed explicit purchase requirements and requested weekend inspection.
-                  </p>
-                </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                    <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                      <p className="font-bold text-slate-500 uppercase tracking-wider text-[10px]">Conversation Summary</p>
+                      <p className="mt-1 text-slate-800 leading-relaxed font-medium">
+                        Prospect engaged via <span className="capitalize font-semibold">{activeOpp.channel}</span>, validated intent for <span className="font-semibold">{oppAttr.propertyType || oppAttr.service || oppAttr.program || oppAttr.targetVehicle || activeOpp.initialIntent || 'commercial opportunity'}</span>.
+                      </p>
+                    </div>
 
-                <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
-                  <p className="font-bold text-slate-500 uppercase tracking-wider text-[10px]">Extracted Qualification Details</p>
-                  <p className="mt-1 text-slate-800 font-semibold">
-                    Budget: {currentIndustry.defaultLead.budget}
-                  </p>
-                  <p className="text-slate-600">
-                    Timeline: {currentIndustry.defaultLead.timeline}
-                  </p>
-                  <p className="text-slate-600">
-                    Location: {currentIndustry.defaultLead.location}
-                  </p>
-                </div>
+                    <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                      <p className="font-bold text-slate-500 uppercase tracking-wider text-[10px]">Extracted Qualification Details</p>
+                      <p className="mt-1 text-slate-800 font-semibold">
+                        Budget: {oppAttr.budget || currentIndustry.defaultLead.budget}
+                      </p>
+                      <p className="text-slate-600">
+                        Timeline: {oppAttr.timeline || currentIndustry.defaultLead.timeline}
+                      </p>
+                      <p className="text-slate-600">
+                        Location: {oppAttr.location || currentIndustry.defaultLead.location}
+                      </p>
+                    </div>
 
-                <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950">
-                  <p className="font-bold uppercase tracking-wider text-[10px] text-emerald-800">Human Handover Recommendation</p>
-                  <p className="mt-1 font-semibold text-emerald-900">
-                    {currentIndustry.defaultLead.recommendedAction}
-                  </p>
-                  <p className="text-[11px] text-emerald-700 mt-1">
-                    No qualification gaps identified. Ready for executive consultation.
-                  </p>
-                </div>
-              </div>
+                    <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950">
+                      <p className="font-bold uppercase tracking-wider text-[10px] text-emerald-800">Human Handover Recommendation</p>
+                      <p className="mt-1 font-semibold text-emerald-900">
+                        {activeOpp.recommendedAction || currentIndustry.defaultLead.recommendedAction}
+                      </p>
+                      <p className="text-[11px] text-emerald-700 mt-1">
+                        Dossier structured for high-conversion consultative sales handover.
+                      </p>
+                    </div>
+                  </div>
 
-              <div className="pt-2 flex items-center justify-end">
-                <button
-                  onClick={() => navigateScreen(5)}
-                  className="px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white rounded-xl text-xs font-bold shadow-brand flex items-center gap-2"
-                >
-                  <span>Simulate Sales Handover Now</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </div>
+                  <div className="pt-2 flex items-center justify-end">
+                    <button
+                      onClick={() => navigateScreen(5)}
+                      className="px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white rounded-xl text-xs font-bold shadow-brand flex items-center gap-2"
+                    >
+                      <span>Simulate Sales Handover Now</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              );
+            })()}
 
           </div>
         )}
