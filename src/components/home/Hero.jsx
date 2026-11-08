@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, ArrowRight, Play, Pause, RotateCcw, CheckCircle2, Flame, AlertCircle, Clock, Zap, ShieldCheck } from 'lucide-react';
+import { Sparkles, ArrowRight, Play, Pause, RotateCcw, CheckCircle2, Flame, AlertCircle, Clock, Zap } from 'lucide-react';
 import { ChannelIcon } from '../common/ChannelIcon';
 import { analytics } from '../../services/analytics';
-
-export function Hero({ onNavigate, onOpenBooking }) {
+export function Hero({ onNavigate }) {
   const [animationStep, setAnimationStep] = useState(0); // 0: Ingesting, 1: Processing, 2: Prioritizing
   const [isPaused, setIsPaused] = useState(false);
 
@@ -26,7 +25,7 @@ export function Hero({ onNavigate, onOpenBooking }) {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-white pt-8 pb-16 lg:pt-14 lg:pb-24 border-b border-slate-100">
+    <section className="relative flex min-h-[100svh] lg:min-h-screen items-center overflow-hidden border-b border-slate-100 bg-white py-8 lg:py-10">
       {/* Background subtle radial ambient grid */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40 pointer-events-none" />
 
@@ -80,23 +79,6 @@ export function Hero({ onNavigate, onOpenBooking }) {
               >
                 Discover How It Works
               </a>
-            </div>
-
-            {/* Brand Promise & Trust markers */}
-            <div className="pt-4 border-t border-slate-100 flex flex-col gap-2">
-              <p className="text-xs uppercase tracking-wider font-semibold text-slate-400">Brand Promise</p>
-              <p className="text-sm font-semibold text-slate-800 flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-brand-500 shrink-0" />
-                <span>Your Team Acts on the Opportunities That Matter.</span>
-              </p>
-              <div className="flex items-center gap-4 text-xs text-slate-500 mt-1">
-                <span className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-slate-400" />
-                  Deterministic & Compliant
-                </span>
-                <span>•</span>
-                <span>No Account Connection Required for Demo</span>
-              </div>
             </div>
 
           </div>
@@ -382,6 +364,7 @@ export function Hero({ onNavigate, onOpenBooking }) {
           </div>
 
         </div>
+
       </div>
     </section>
   );

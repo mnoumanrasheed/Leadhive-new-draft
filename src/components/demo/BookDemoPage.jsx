@@ -1,325 +1,121 @@
 import React, { useState } from 'react';
-import { Calendar, CheckCircle2, ShieldCheck, ArrowRight, Sparkles, Clock, Users, Building, MessageSquare } from 'lucide-react';
+import { ArrowRight, CalendarDays, Check, CheckCircle2, Clock3, LockKeyhole, MessageSquareText, ShieldCheck, Sparkles, UsersRound } from 'lucide-react';
 import { analytics } from '../../services/analytics';
-import { ChannelIcon } from '../common/ChannelIcon';
+
+const FIELD_STYLE = 'w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-cyan-400 focus:bg-white focus:ring-4 focus:ring-cyan-100';
+
+const DEMO_POINTS = [
+  { icon: Sparkles, title: 'Built around your sales motion', copy: 'We tailor the walkthrough to your industry, qualification rules and team workflow.' },
+  { icon: Clock3, title: '20 focused minutes', copy: 'A useful working session—no generic slides or lengthy sales pitch.' },
+  { icon: ShieldCheck, title: 'Safe to explore', copy: 'Use illustrative scenarios first; no system connection is required for the demo.' },
+];
 
 export function BookDemoPage({ onNavigate }) {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    industry: 'Real Estate',
-    volume: '500 - 2,500 conversations/mo',
-    primaryChannel: 'WhatsApp + Socials (All Channels)',
-    notes: ''
+    name: '', email: '', phone: '', company: '', industry: 'Real Estate',
+    volume: '500 - 2,500 conversations/mo', primaryChannel: 'All Channels', notes: '',
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    analytics.track('book_demo_clicked', {
-      source: 'dedicated_book_demo_page',
-      industry: formData.industry,
-      company: formData.company,
-      volume: formData.volume
-    });
+  const updateField = (field) => (event) => setFormData((current) => ({ ...current, [field]: event.target.value }));
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    analytics.track('book_demo_clicked', { source: 'dedicated_book_demo_page', industry: formData.industry, company: formData.company, volume: formData.volume });
     setSubmitted(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  if (submitted) {
+    return (
+      <section className="relative min-h-[calc(100vh-80px)] overflow-hidden bg-slate-50 px-4 py-16 sm:py-24">
+        <div className="pointer-events-none absolute left-1/2 top-0 h-96 w-[44rem] -translate-x-1/2 rounded-full bg-cyan-100/70 blur-[120px]" />
+        <div className="relative mx-auto max-w-2xl rounded-[2rem] border border-slate-200 bg-white p-7 text-center shadow-[0_34px_90px_-45px_rgba(8,145,178,0.45)] sm:p-12">
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-emerald-50 text-emerald-600 ring-8 ring-emerald-50/60"><CheckCircle2 className="h-8 w-8" /></div>
+          <p className="mt-7 text-[11px] font-bold uppercase tracking-[0.16em] text-emerald-700">Request received</p>
+          <h1 className="mt-3 text-3xl font-extrabold tracking-[-0.04em] text-slate-950 sm:text-4xl">Thank you, {formData.name}.</h1>
+          <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-slate-600 sm:text-base">Your private LeadHive walkthrough for <strong className="text-slate-900">{formData.company}</strong> is in the queue. Our team will contact you within two business hours.</p>
+
+          <div className="mt-8 rounded-2xl border border-slate-100 bg-slate-50 p-5 text-left">
+            <div className="flex items-center justify-between border-b border-slate-200 pb-3"><span className="text-xs font-bold uppercase tracking-[0.12em] text-slate-500">Demo brief</span><span className="rounded-full bg-cyan-100 px-2.5 py-1 text-[10px] font-bold text-cyan-800">PRIVATE SESSION</span></div>
+            <dl className="mt-4 grid gap-4 text-sm sm:grid-cols-2">
+              <div><dt className="text-xs text-slate-500">Industry</dt><dd className="mt-1 font-bold text-slate-900">{formData.industry}</dd></div>
+              <div><dt className="text-xs text-slate-500">Inbound volume</dt><dd className="mt-1 font-bold text-slate-900">{formData.volume}</dd></div>
+              <div><dt className="text-xs text-slate-500">Work email</dt><dd className="mt-1 break-words font-bold text-slate-900">{formData.email}</dd></div>
+              <div><dt className="text-xs text-slate-500">Focus channels</dt><dd className="mt-1 font-bold text-slate-900">{formData.primaryChannel}</dd></div>
+            </dl>
+          </div>
+
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <button onClick={() => onNavigate('experience')} className="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-500 px-5 py-3 text-sm font-bold text-white shadow-[0_12px_28px_-14px_rgba(6,182,212,0.8)] transition hover:bg-cyan-600"><Sparkles className="h-4 w-4" /> Explore the AI experience</button>
+            <button onClick={() => onNavigate('home')} className="rounded-xl border border-slate-200 px-5 py-3 text-sm font-bold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50">Return home</button>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <div className="min-h-screen bg-slate-50/50 py-12 sm:py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {!submitted ? (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            
-            {/* Left Column: Value Proposition & What to Expect (5 cols) */}
-            <div className="lg:col-span-5 space-y-6 text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-brand-800 text-xs font-semibold">
-                <Calendar className="w-3.5 h-3.5 text-brand-600" />
-                <span>Personalized Live Demonstration</span>
+    <section className="relative isolate overflow-hidden bg-slate-50 py-10 sm:py-16">
+      <div className="pointer-events-none absolute left-1/2 top-0 h-[30rem] w-[55rem] -translate-x-1/2 rounded-full bg-cyan-100/60 blur-[130px]" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_36px_100px_-50px_rgba(15,23,42,0.5)] lg:grid-cols-[0.85fr_1.15fr]">
+          <aside className="relative overflow-hidden bg-slate-950 px-6 py-9 sm:px-10 sm:py-12">
+            <div className="pointer-events-none absolute inset-0 opacity-60 [background-image:linear-gradient(rgba(103,232,249,0.09)_1px,transparent_1px),linear-gradient(90deg,rgba(103,232,249,0.09)_1px,transparent_1px)] [background-size:32px_32px]" />
+            <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-cyan-400/25 blur-[100px]" />
+            <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-violet-500/20 blur-[90px]" />
+            <div className="relative">
+              <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/25 bg-cyan-300/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-cyan-100"><CalendarDays className="h-3.5 w-3.5" /> Private product walkthrough</div>
+              <h1 className="mt-7 max-w-md text-4xl font-extrabold tracking-[-0.05em] text-white sm:text-5xl lg:text-[3.25rem] lg:leading-[1.04]">Turn more conversations into <span className="text-cyan-300">qualified opportunities.</span></h1>
+              <p className="mt-6 max-w-md text-base leading-relaxed text-slate-300">See how LeadHive keeps every inbound customer conversation moving, then gives your sales team the exact context to take the next step.</p>
+
+              <div className="mt-9 space-y-3">
+                {DEMO_POINTS.map(({ icon: Icon, title, copy }) => (
+                  <div key={title} className="flex gap-3 rounded-2xl border border-white/10 bg-white/[0.055] p-4 backdrop-blur-sm">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-cyan-300/15 text-cyan-200"><Icon className="h-4 w-4" /></div>
+                    <div><h2 className="text-sm font-bold text-white">{title}</h2><p className="mt-1 text-xs leading-relaxed text-slate-400">{copy}</p></div>
+                  </div>
+                ))}
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                See LeadHive AI in Action with Your Real Channels.
-              </h1>
+              <div className="mt-9 rounded-2xl border border-cyan-300/20 bg-cyan-300/[0.08] p-4">
+                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-cyan-200"><MessageSquareText className="h-4 w-4" /> Your demo will cover</div>
+                <div className="mt-3 flex flex-wrap gap-2">{['Capture', 'Qualify', 'Prioritise', 'Handover'].map((item) => <span key={item} className="inline-flex items-center gap-1 rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-medium text-slate-200"><Check className="h-3 w-3 text-cyan-300" /> {item}</span>)}</div>
+              </div>
+            </div>
+          </aside>
 
-              <p className="text-base text-slate-600 leading-relaxed">
-                Discover how autonomous sales intelligence captures, qualifies, and prioritizes customer inquiries across WhatsApp, Facebook, Instagram, YouTube, TikTok, and Web Chat, so your team focuses only on closing.
-              </p>
+          <div className="p-6 sm:p-10 lg:p-12">
+            <div className="flex items-start justify-between gap-6 border-b border-slate-100 pb-7">
+              <div><p className="text-[11px] font-bold uppercase tracking-[0.15em] text-cyan-700">Reserve your session</p><h2 className="mt-2 text-2xl font-extrabold tracking-[-0.03em] text-slate-950 sm:text-3xl">Book a tailored demo</h2><p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-500">Tell us a little about your business. We will prepare a relevant, one-to-one walkthrough.</p></div>
+              <div className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-cyan-50 text-cyan-600 sm:flex"><UsersRound className="h-5 w-5" /></div>
+            </div>
 
-              {/* Pillars of the demo */}
-              <div className="space-y-4 pt-2">
-                <div className="p-4 bg-white rounded-2xl border border-slate-200/80 shadow-subtle flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center shrink-0 mt-0.5">
-                    <Sparkles className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-slate-900">Configured to Your Vertical</h4>
-                    <p className="text-xs text-slate-600 mt-0.5">
-                      We model qualification criteria, budgets, and scoring rules specific to your industry (Real Estate, Healthcare, Education, Automotive, E-commerce, or Services).
-                    </p>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-white rounded-2xl border border-slate-200/80 shadow-subtle flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
-                    <Clock className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-slate-900">20-Minute Focus Session</h4>
-                    <p className="text-xs text-slate-600 mt-0.5">
-                      Concise, high-impact walkthrough. No generic slide decks, just a live simulation of your prospective customer conversations converting into hot leads.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="p-4 bg-white rounded-2xl border border-slate-200/80 shadow-subtle flex items-start gap-3.5">
-                  <div className="w-9 h-9 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
-                    <ShieldCheck className="w-4 h-4 text-brand-600" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-slate-900">Zero Obligation, Confidential</h4>
-                    <p className="text-xs text-slate-600 mt-0.5">
-                      Deterministic business guardrails, enterprise SOC-2 architecture, and complete data privacy guaranteed.
-                    </p>
-                  </div>
-                </div>
+            <form onSubmit={handleSubmit} className="mt-7 space-y-5">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <Field label="Your name" required><input required value={formData.name} onChange={updateField('name')} placeholder="e.g. Tariq Mehmood" className={FIELD_STYLE} /></Field>
+                <Field label="Work email" required><input required type="email" value={formData.email} onChange={updateField('email')} placeholder="name@company.com" className={FIELD_STYLE} /></Field>
+                <Field label="Phone or WhatsApp" required><input required value={formData.phone} onChange={updateField('phone')} placeholder="+92 300 1234567" className={FIELD_STYLE} /></Field>
+                <Field label="Company name" required><input required value={formData.company} onChange={updateField('company')} placeholder="e.g. Apex Holdings" className={FIELD_STYLE} /></Field>
+                <Field label="Industry" required><select value={formData.industry} onChange={updateField('industry')} className={FIELD_STYLE}><option>Real Estate</option><option>Healthcare</option><option>Education & EdTech</option><option>Automotive</option><option>B2B & E-commerce</option><option>Professional Services</option></select></Field>
+                <Field label="Monthly inbound volume"><select value={formData.volume} onChange={updateField('volume')} className={FIELD_STYLE}><option>Less than 500 conversations</option><option>500 - 2,500 conversations/mo</option><option>2,500 - 10,000 conversations/mo</option><option>10,000+ conversations/mo</option></select></Field>
               </div>
 
-              {/* Supported Channels Preview ribbon */}
+              <Field label="Primary focus channels"><select value={formData.primaryChannel} onChange={updateField('primaryChannel')} className={FIELD_STYLE}><option>All Channels</option><option>WhatsApp Business</option><option>Facebook & Instagram</option><option>Website chat</option><option>YouTube & TikTok</option></select></Field>
+              <Field label="What challenge would you like to solve?" hint="Optional"><textarea rows={3} value={formData.notes} onChange={updateField('notes')} placeholder="For example: We need faster replies on WhatsApp and better lead qualification before calls." className={`${FIELD_STYLE} resize-none`} /></Field>
+
               <div className="pt-2">
-                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Supported Inbound Channels</p>
-                <div className="flex items-center gap-2">
-                  <ChannelIcon channel="facebook" className="w-6 h-6 rounded" />
-                  <ChannelIcon channel="instagram" className="w-6 h-6 rounded" />
-                  <ChannelIcon channel="youtube" className="w-6 h-6 rounded" />
-                  <ChannelIcon channel="whatsapp" className="w-6 h-6 rounded" />
-                  <ChannelIcon channel="tiktok" className="w-6 h-6 rounded" />
-                  <ChannelIcon channel="website" className="w-6 h-6 rounded" />
-                  <span className="text-xs text-slate-500 font-medium ml-1">Unified Omnichannel Feed</span>
-                </div>
+                <button type="submit" className="group flex w-full items-center justify-center gap-2 rounded-xl bg-cyan-500 px-5 py-3.5 text-sm font-bold text-white shadow-[0_14px_30px_-14px_rgba(6,182,212,0.85)] transition hover:bg-cyan-600 focus:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200"><CalendarDays className="h-4 w-4" /> Reserve my demo <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></button>
+                <p className="mt-4 flex items-center justify-center gap-2 text-center text-[11px] text-slate-500"><LockKeyhole className="h-3.5 w-3.5 text-cyan-600" /> Your details are used only to arrange this demo.</p>
               </div>
-
-            </div>
-
-            {/* Right Column: Dedicated Booking Form (7 cols) */}
-            <div className="lg:col-span-7">
-              <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-card">
-                
-                <div className="border-b border-slate-100 pb-5 mb-6">
-                  <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900">
-                    Schedule Your Personalized Demo
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-500 mt-1">
-                    Fill in your organization details to reserve a private 1-on-1 walkthrough with our solutions team.
-                  </p>
-                </div>
-
-                <form onSubmit={handleSubmit} className="space-y-4 text-left text-xs">
-                  
-                  {/* Full Name & Corporate Email */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block font-semibold text-slate-700 mb-1.5 text-xs">Full Name *</label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="e.g. Tariq Mehmood"
-                        value={formData.name}
-                        onChange={e => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-xs bg-slate-50/50"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block font-semibold text-slate-700 mb-1.5 text-xs">Work Email *</label>
-                      <input
-                        type="email"
-                        required
-                        placeholder="name@company.com"
-                        value={formData.email}
-                        onChange={e => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-xs bg-slate-50/50"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Phone & Company */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block font-semibold text-slate-700 mb-1.5 text-xs">Phone / WhatsApp Number *</label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="+92 300 1234567"
-                        value={formData.phone}
-                        onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-xs bg-slate-50/50"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block font-semibold text-slate-700 mb-1.5 text-xs">Company / Business Name *</label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="e.g. Apex Holdings"
-                        value={formData.company}
-                        onChange={e => setFormData({ ...formData, company: e.target.value })}
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-xs bg-slate-50/50"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Industry & Monthly Volume */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block font-semibold text-slate-700 mb-1.5 text-xs">Industry Vertical *</label>
-                      <select
-                        value={formData.industry}
-                        onChange={e => setFormData({ ...formData, industry: e.target.value })}
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-xs bg-slate-50/50"
-                      >
-                        <option value="Real Estate">Real Estate & Developers</option>
-                        <option value="Healthcare">Healthcare & Specialized Clinics</option>
-                        <option value="Education">Higher Education & EdTech</option>
-                        <option value="Automotive">Automotive Dealerships</option>
-                        <option value="E-commerce">B2B & E-commerce</option>
-                        <option value="Professional Services">Professional Services & Advisory</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="block font-semibold text-slate-700 mb-1.5 text-xs">Monthly Inbound Volume</label>
-                      <select
-                        value={formData.volume}
-                        onChange={e => setFormData({ ...formData, volume: e.target.value })}
-                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-xs bg-slate-50/50"
-                      >
-                        <option value="< 500 conversations/mo">&lt; 500 conversations / month</option>
-                        <option value="500 - 2,500 conversations/mo">500 - 2,500 conversations / month</option>
-                        <option value="2,500 - 10,000 conversations/mo">2,500 - 10,000 conversations / month</option>
-                        <option value="10,000+ conversations/mo">10,000+ conversations / month</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  {/* Primary Channels */}
-                  <div>
-                    <label className="block font-semibold text-slate-700 mb-1.5 text-xs">Primary Focus Channels</label>
-                    <select
-                      value={formData.primaryChannel}
-                      onChange={e => setFormData({ ...formData, primaryChannel: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-xs bg-slate-50/50"
-                    >
-                      <option value="WhatsApp + Socials (All Channels)">All 6 Channels (WhatsApp, Socials, Website)</option>
-                      <option value="WhatsApp Business Primary">WhatsApp Business Primary</option>
-                      <option value="Facebook & Instagram Inquiries">Facebook & Instagram Inquiries</option>
-                      <option value="Website Conversational Concierge">Website Conversational Concierge</option>
-                      <option value="Social Comments (YouTube & TikTok)">Social Comments (YouTube & TikTok)</option>
-                    </select>
-                  </div>
-
-                  {/* Notes / Special Requirements */}
-                  <div>
-                    <label className="block font-semibold text-slate-700 mb-1.5 text-xs">What specific challenge would you like to solve? (Optional)</label>
-                    <textarea
-                      rows={3}
-                      placeholder="e.g. We have high inbound message volume on WhatsApp and struggle to qualify buyers before our reps call."
-                      value={formData.notes}
-                      onChange={e => setFormData({ ...formData, notes: e.target.value })}
-                      className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 text-xs bg-slate-50/50"
-                    />
-                  </div>
-
-                  {/* Submit Button */}
-                  <div className="pt-3">
-                    <button
-                      type="submit"
-                      className="w-full py-3.5 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl shadow-brand text-sm transition-all flex items-center justify-center gap-2 group"
-                    >
-                      <Calendar className="w-4 h-4" />
-                      <span>Confirm Demo Request</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                    </button>
-                  </div>
-
-                  {/* Footer reassurance */}
-                  <div className="pt-2 flex items-center justify-center gap-2 text-[11px] text-slate-400 text-center">
-                    <ShieldCheck className="w-3.5 h-3.5 text-slate-400" />
-                    <span>Your contact information is strictly protected. No unsolicited outreach.</span>
-                  </div>
-
-                </form>
-
-              </div>
-            </div>
-
+            </form>
           </div>
-        ) : (
-          /* Confirmation Screen */
-          <div className="max-w-2xl mx-auto bg-white border border-slate-200 rounded-3xl p-8 sm:p-12 shadow-card text-center space-y-6 animate-fadeIn">
-            <div className="w-16 h-16 rounded-3xl bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-sm">
-              <CheckCircle2 className="w-8 h-8" />
-            </div>
-
-            <div className="space-y-2">
-              <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-                Demo Request Received
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
-                Thank You, {formData.name}!
-              </h2>
-              <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-                Your personalized demonstration request for <span className="font-bold text-slate-900">{formData.company}</span> has been confirmed.
-              </p>
-            </div>
-
-            {/* Details Summary Card */}
-            <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl text-left text-xs space-y-2.5 max-w-lg mx-auto">
-              <div className="flex items-center justify-between">
-                <span className="text-slate-500">Industry:</span>
-                <span className="font-bold text-slate-900">{formData.industry}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-slate-500">Corporate Email:</span>
-                <span className="font-semibold text-slate-800">{formData.email}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-slate-500">Channels:</span>
-                <span className="font-semibold text-slate-800">{formData.primaryChannel}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-slate-500">Response Window:</span>
-                <span className="font-bold text-emerald-700">Within 2 business hours</span>
-              </div>
-            </div>
-
-            {/* Next Action Options */}
-            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <button
-                onClick={() => onNavigate('experience')}
-                className="w-full sm:w-auto px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white rounded-xl text-xs font-bold shadow-brand flex items-center justify-center gap-2"
-              >
-                <Sparkles className="w-4 h-4" />
-                <span>Test in Interactive AI Experience Centre</span>
-              </button>
-
-              <button
-                onClick={() => onNavigate('home')}
-                className="w-full sm:w-auto px-5 py-3 border border-slate-200 hover:border-slate-300 rounded-xl text-xs font-semibold text-slate-700 hover:bg-slate-50"
-              >
-                Return to Homepage
-              </button>
-            </div>
-          </div>
-        )}
-
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 
+function Field({ label, required = false, hint, children }) {
+  return <label className="block"><span className="mb-2 flex items-center gap-1 text-xs font-bold text-slate-700">{label}{required && <span className="text-cyan-600">*</span>}{hint && <span className="font-medium text-slate-400">({hint})</span>}</span>{children}</label>;
+}

@@ -9,28 +9,24 @@ import { HumanCenteredOutcome } from './components/home/HumanCenteredOutcome';
 import { IndustryShowcase } from './components/home/IndustryShowcase';
 import { FinalCTA } from './components/home/FinalCTA';
 import { ExperienceCentre } from './components/experience/ExperienceCentre';
-import { AnalyticsDrawer } from './components/experience/AnalyticsDrawer';
 import { BookDemoPage } from './components/demo/BookDemoPage';
-import { analytics } from './services/analytics';
 
 export function App() {
   const [activeRoute, setActiveRoute] = useState('home');
-  const [selectedIndustryForExp, setSelectedIndustryForExp] = useState('real-estate');
   // Booking modal removed; using dedicated booking page
-  const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false);
-  const [eventCount, setEventCount] = useState(0);
 
   // Sync route with URL hash or pathname
   useEffect(() => {
     const handleUrlChange = () => {
       const path = window.location.pathname;
       const hash = window.location.hash;
-      if (path === '/experience' || hash === '#experience') {
-        setActiveRoute('experience');
-      } else if (path === '/book-demo' || hash === '#book-demo') {
+      if (path === '/book-demo' || hash === '#book-demo') {
         setActiveRoute('booking');
       } else {
         setActiveRoute('home');
+        if (path === '/experience' || hash === '#experience') {
+          window.setTimeout(() => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' }), 100);
+        }
       }
     };
 
@@ -47,8 +43,10 @@ export function App() {
   const handleNavigate = (route) => {
     setActiveRoute(route);
     if (route === 'experience') {
+      setActiveRoute('home');
       window.history.pushState(null, '', '#experience');
-      document.title = 'LeadHive AI: Interactive AI Experience Centre';
+      document.title = 'LeadHive AI: Autonomous Sales Intelligence Platform';
+      window.setTimeout(() => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
     } else if (route === 'booking') {
       window.history.pushState(null, '', '#book-demo');
       document.title = 'Book a LeadHive AI Demo';
@@ -56,24 +54,11 @@ export function App() {
       window.history.pushState(null, '', '#');
       document.title = 'LeadHive AI: Autonomous Sales Intelligence Platform';
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (route !== 'experience') window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-
-  // Subscribe to live telemetry count
-  useEffect(() => {
-    const unsub = analytics.subscribe(() => {
-      setEventCount(analytics.getRecentEvents().length);
-    });
-    return unsub;
-  }, []);
 
   const handleOpenBooking = () => {
     handleNavigate('booking');
-  };
-
-  const handleSelectIndustryFromHome = (industryId) => {
-    setSelectedIndustryForExp(industryId);
-    handleNavigate('experience');
   };
 
   return (
@@ -90,10 +75,7 @@ export function App() {
         {activeRoute === 'home' ? (
           <div>
             {/* Section 01: Hero */}
-            <Hero
-              onNavigate={handleNavigate}
-              onOpenBooking={handleOpenBooking}
-            />
+            <Hero onNavigate={handleNavigate} />
 
             {/* Section 02: One Intelligence. Every Channel. */}
             <ChannelGrid
@@ -117,23 +99,20 @@ export function App() {
             />
 
             {/* Section 06: Intelligence Across Industries */}
-            <IndustryShowcase
-              onSelectIndustry={handleSelectIndustryFromHome}
+            <IndustryShowcase />
+
+            {/* Section 07: Full Interactive Experience Centre */}
+            <ExperienceCentre
+              onOpenBooking={handleOpenBooking}
+              onBackToHome={() => handleNavigate('home')}
             />
 
-            {/* Section 07: Final CTA */}
+            {/* Section 08: Final CTA, immediately before the footer */}
             <FinalCTA
               onNavigate={handleNavigate}
               onOpenBooking={handleOpenBooking}
             />
           </div>
-        ) : activeRoute === 'experience' ? (
-          /* Dedicated AI Experience Centre (/experience) */
-          <ExperienceCentre
-            initialIndustryId={selectedIndustryForExp}
-            onOpenBooking={handleOpenBooking}
-            onBackToHome={() => handleNavigate('home')}
-          />
         ) : (
           /* Dedicated Booking Page */
           <BookDemoPage onNavigate={handleNavigate} />
@@ -141,27 +120,8 @@ export function App() {
       </main>
 
       {/* Global Footer */}
-      <Footer
-        onNavigate={handleNavigate}
-        onOpenBooking={handleOpenBooking}
-      />
+      <Footer onNavigate={handleNavigate} />
 
-      {/* Optional Discrete Floating Telemetry Pill (Section 09 Analytics) */}
-      <button
-        onClick={() => setIsAnalyticsOpen(!isAnalyticsOpen)}
-        title="View live Section 09 analytics telemetry events"
-        className="fixed bottom-4 right-4 z-40 bg-white/95 backdrop-blur-sm border border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-800 rounded-full px-3 py-1.5 shadow-sm text-[11px] font-mono flex items-center gap-1.5 transition-all opacity-75 hover:opacity-100"
-      >
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-        <span>Telemetry</span>
-        <span className="bg-slate-100 px-1.5 py-0.2 rounded text-[10px] text-slate-600 font-semibold">{eventCount}</span>
-      </button>
-
-      {/* Real-time Analytics Telemetry Drawer */}
-      <AnalyticsDrawer
-        isOpen={isAnalyticsOpen}
-        onClose={() => setIsAnalyticsOpen(false)}
-      />
     </div>
   );
 }

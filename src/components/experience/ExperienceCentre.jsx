@@ -82,7 +82,7 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
     if (eventName) {
       analytics.track(eventName, payload);
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   // Replay active conversation
@@ -107,10 +107,10 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
   };
 
   return (
-    <div className="min-h-screen bg-slate-50/50 pb-20">
+    <section id="experience" className="scroll-mt-20 border-t border-slate-100 bg-slate-50/50 pb-20 pt-12 sm:pt-16">
       
       {/* Main Experience Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* ========================================================
             SCREEN 01: INDUSTRY SCENARIO SELECTION
@@ -1171,7 +1171,7 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
 
       </div>
 
-    </div>
+    </section>
   );
 }
 

@@ -30,8 +30,39 @@
   }
 }
 
+@keyframes processFlow {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  8%, 88% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(min(76vw, 69rem));
+    opacity: 0;
+  }
+}
+
+@keyframes dashboardSweep {
+  0% {
+    transform: translateX(-125%);
+  }
+  100% {
+    transform: translateX(325%);
+  }
+}
+
 .animate-pulse-subtle {
   animation: pulseSubtle 3s ease-in-out infinite;
+}
+
+.animate-process-flow {
+  animation: processFlow 6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.animate-dashboard-sweep {
+  animation: dashboardSweep 5.5s ease-in-out infinite;
 }
 
 /* Glass & Card styles */

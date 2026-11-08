@@ -1,7 +1,6 @@
 import React from 'react';
-import { ArrowRight, Sparkles, Building2, Stethoscope, GraduationCap, Car, ShoppingBag, Briefcase } from 'lucide-react';
+import { Building2, Stethoscope, GraduationCap, Car, ShoppingBag, Briefcase } from 'lucide-react';
 import { INDUSTRIES } from '../../data/scenarios';
-import { analytics } from '../../services/analytics';
 
 const ICON_MAP = {
   Building2,
@@ -12,7 +11,7 @@ const ICON_MAP = {
   Briefcase
 };
 
-export function IndustryShowcase({ onSelectIndustry }) {
+export function IndustryShowcase() {
   return (
     <section id="industries-section" className="py-20 bg-white border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -62,7 +61,7 @@ export function IndustryShowcase({ onSelectIndustry }) {
                   </div>
 
                   {/* Body Content */}
-                  <div className="p-6 space-y-3">
+                  <div className="p-6">
                     <h3 className="text-lg font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
                       {ind.name}
                     </h3>
@@ -73,39 +72,8 @@ export function IndustryShowcase({ onSelectIndustry }) {
                       {ind.description}
                     </p>
 
-                    {/* Default Qualification Showcase */}
-                    <div className="mt-4 pt-3 border-t border-slate-100 bg-slate-50 p-3 rounded-xl space-y-1.5 text-xs">
-                      <div className="flex items-center justify-between text-slate-500">
-                        <span>Sample Prospect:</span>
-                        <span className="font-semibold text-slate-800">{ind.defaultLead.prospect}</span>
-                      </div>
-                      <div className="flex items-center justify-between text-slate-500">
-                        <span>Lead Score:</span>
-                        <span className="font-bold text-rose-600 bg-rose-50 px-1.5 py-0.2 rounded">
-                          {ind.defaultLead.score}/100 ({ind.defaultLead.temperature})
-                        </span>
-                      </div>
-                      <div className="text-[11px] text-slate-500 italic truncate pt-1">
-                        Requirement: "{ind.defaultLead.requirement}"
-                      </div>
-                    </div>
                   </div>
                 </div>
-
-                {/* Footer Action */}
-                <div className="p-6 pt-0">
-                  <button
-                    onClick={() => {
-                      analytics.track('industry_selected', { industry: ind.id, source: 'industry_showcase' });
-                      onSelectIndustry(ind.id);
-                    }}
-                    className="w-full py-2.5 px-4 rounded-xl text-xs font-semibold text-brand-700 bg-brand-50 hover:bg-brand-100 border border-brand-200 transition-all flex items-center justify-center gap-2 group-hover:bg-brand-500 group-hover:text-white"
-                  >
-                    <span>Launch {ind.name} Scenario</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-
               </div>
             );
           })}

@@ -25,15 +25,14 @@ export function ChannelGrid({ onNavigate }) {
         {/* 6-Channel Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
           {CHANNELS_INFO.map((ch) => {
-            const isWebsite = ch.id === 'website';
             return (
               <div
                 key={ch.id}
                 className="group relative bg-white border border-slate-200 hover:border-brand-300 rounded-2xl p-6 shadow-subtle hover:shadow-card transition-all flex flex-col justify-between"
               >
                 <div>
-                  {/* Card Header: Official Platform Icon + Ratio guideline */}
-                  <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+                  {/* Card Header */}
+                  <div className="flex items-center pb-4 border-b border-slate-100">
                     <div className="flex items-center gap-3">
                       <ChannelIcon channel={ch.id} className="w-10 h-10 rounded-xl" />
                       <div>
@@ -41,10 +40,6 @@ export function ChannelGrid({ onNavigate }) {
                         <p className="text-xs text-slate-500">{ch.interactionType}</p>
                       </div>
                     </div>
-                    {/* Visual Identity indicator */}
-                    <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-slate-50 text-slate-500 border border-slate-100">
-                      {isWebsite ? '100% LeadHive' : '60/40 Co-Branded'}
-                    </span>
                   </div>
 
                   {/* Channel Description */}

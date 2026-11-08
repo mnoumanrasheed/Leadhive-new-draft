@@ -1,12 +1,10 @@
 import React from 'react';
-import { Shield, Sparkles, ArrowUpRight, CheckCircle2 } from 'lucide-react';
-import { ChannelIcon } from './ChannelIcon';
 
-export function Footer({ onNavigate, onOpenBooking }) {
+export function Footer({ onNavigate }) {
   return (
     <footer className="bg-slate-900 text-slate-300 pt-16 pb-12 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-800">
           
           {/* Brand & Proposition */}
           <div className="lg:col-span-2 space-y-4">
@@ -23,17 +21,6 @@ export function Footer({ onNavigate, onOpenBooking }) {
             <div className="pt-2">
               <p className="text-xs uppercase tracking-wider font-semibold text-brand-400">Brand Promise</p>
               <p className="text-sm font-medium text-white mt-1">Your Team Acts on the Opportunities That Matter.</p>
-            </div>
-            <div className="flex items-center gap-2 pt-2">
-              <span className="text-xs text-slate-400">Supported Channels:</span>
-              <div className="flex items-center gap-1.5">
-                <ChannelIcon channel="facebook" className="w-5 h-5 rounded" />
-                <ChannelIcon channel="instagram" className="w-5 h-5 rounded" />
-                <ChannelIcon channel="youtube" className="w-5 h-5 rounded" />
-                <ChannelIcon channel="whatsapp" className="w-5 h-5 rounded" />
-                <ChannelIcon channel="tiktok" className="w-5 h-5 rounded" />
-                <ChannelIcon channel="website" className="w-5 h-5 rounded" />
-              </div>
             </div>
           </div>
 
@@ -87,30 +74,6 @@ export function Footer({ onNavigate, onOpenBooking }) {
             </ul>
           </div>
 
-          {/* Actions & Verification */}
-          <div>
-            <h4 className="text-sm font-semibold text-white tracking-wider uppercase mb-4">Direct Action</h4>
-            <div className="space-y-3">
-              <button
-                onClick={() => onNavigate('experience')}
-                className="w-full py-2.5 px-3 bg-brand-500 hover:bg-brand-600 text-white rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition-all"
-              >
-                <Sparkles className="w-3.5 h-3.5" />
-                Launch Experience Centre
-              </button>
-              <button
-                onClick={() => onOpenBooking('Footer Consultation')}
-                className="w-full py-2.5 px-3 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 border border-slate-700 transition-all"
-              >
-                Request Consultation
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </button>
-              <div className="pt-2 flex items-center gap-2 text-[11px] text-slate-400">
-                <CheckCircle2 className="w-3.5 h-3.5 text-brand-400" />
-                <span>Enterprise SOC-2 & GDPR Architecture</span>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Legal & Regulatory Disclaimer */}

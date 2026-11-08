@@ -558,7 +558,6 @@ export const CHANNELS_INFO = [
     description: 'Turn customer inquiries into sales opportunities.',
     interactionType: 'Direct Messenger & ad comments',
     previewText: 'Inquiring about 2-bed apartment options with 3-year installment plans.',
-    brandingRatio: '60% Facebook / 40% LeadHive AI'
   },
   {
     id: 'instagram',
@@ -568,7 +567,6 @@ export const CHANNELS_INFO = [
     description: 'Understand and qualify prospects engaging with your brand.',
     interactionType: 'Direct messages & Reel comment queries',
     previewText: 'Saw your luxury villa reel! What is the down payment and floor plan?',
-    brandingRatio: '60% Instagram / 40% LeadHive AI'
   },
   {
     id: 'youtube',
@@ -577,7 +575,6 @@ export const CHANNELS_INFO = [
     description: 'Identify commercial intent within audience comments and engagement.',
     interactionType: 'Video comments & community engagement',
     previewText: 'Great property walkthrough. Do you have ready commercial plots in Sector A?',
-    brandingRatio: '60% YouTube / 40% LeadHive AI'
   },
   {
     id: 'whatsapp',
@@ -586,7 +583,6 @@ export const CHANNELS_INFO = [
     description: 'Handle customer inquiries and capture buying requirements.',
     interactionType: 'Verified business inquiries & catalogue orders',
     previewText: 'I need a 5-marla house in DHA Islamabad. Budget is PKR 30M.',
-    brandingRatio: '60% WhatsApp / 40% LeadHive AI'
   },
   {
     id: 'tiktok',
@@ -597,7 +593,6 @@ export const CHANNELS_INFO = [
     description: 'Identify supported audience engagement and potential sales intent.',
     interactionType: 'Supported comment & showcase engagement',
     previewText: 'What are the possession charges for these smart homes?',
-    brandingRatio: '60% TikTok / 40% LeadHive AI'
   },
   {
     id: 'website',
@@ -606,7 +601,6 @@ export const CHANNELS_INFO = [
     description: 'Convert website visitors into qualified prospects.',
     interactionType: 'Real-time conversational concierge',
     previewText: 'I am comparing 3 listings on your site. Can I book a site visit for tomorrow?',
-    brandingRatio: '100% LeadHive AI Brand Identity'
   }
 ];
 

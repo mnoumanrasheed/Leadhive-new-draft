@@ -1,150 +1,160 @@
-import React from 'react';
-import { Eye, MessageCircle, FileCheck2, Trophy, ArrowRight, ShieldCheck } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import {
+  Activity,
+  ArrowRight,
+  Eye,
+  FileCheck2,
+  MessageCircle,
+  ShieldCheck,
+  Sparkles,
+  Trophy,
+} from 'lucide-react';
 
 export function OperatingModel({ onNavigate }) {
+  const [activeStep, setActiveStep] = useState(0);
   const steps = [
     {
-      number: '01',
-      title: 'Understand',
-      icon: Eye,
-      description: 'Interpret customer conversations and identify intent.',
-      details: [
-        'Multi-lingual semantic comprehension',
-        'Buying signal & commercial interest detection',
-        'Channel-aware message classification'
-      ],
-      badge: 'Intent Recognition'
+      number: '01', title: 'Understand', icon: Eye, signal: 'Signal detected',
+      description: 'Turn every incoming message into a clear understanding of customer intent.',
+      details: ['Multi-lingual context', 'Buying-signal detection', 'Channel classification'],
     },
     {
-      number: '02',
-      title: 'Engage',
-      icon: MessageCircle,
-      description: 'Generate relevant, context-aware responses through supported channels.',
-      details: [
-        'Brand-compliant business knowledge retrieval',
-        'Natural channel-native dialogue progression',
-        'Continuous context preservation'
-      ],
-      badge: 'Active Engagement'
+      number: '02', title: 'Engage', icon: MessageCircle, signal: 'Context in motion',
+      description: 'Respond with timely, natural conversation that stays true to your business.',
+      details: ['Approved knowledge', 'Channel-native dialogue', 'Conversation memory'],
     },
     {
-      number: '03',
-      title: 'Qualify',
-      icon: FileCheck2,
-      description: 'Extract customer requirements, budget, location, preferences and purchase timeline.',
-      details: [
-        'Structured parameter validation',
-        'Readiness & purchasing power extraction',
-        'Qualification gap detection'
-      ],
-      badge: 'BANT+ Alignment'
+      number: '03', title: 'Qualify', icon: FileCheck2, signal: 'Intent verified',
+      description: 'Surface the requirements, timing and purchasing power that shape a real opportunity.',
+      details: ['Needs & preferences', 'Budget & timeline', 'Readiness validation'],
     },
     {
-      number: '04',
-      title: 'Prioritize',
-      icon: Trophy,
-      description: 'Score opportunities and recommend the next best sales action.',
-      details: [
-        'Multi-factor lead score (0-100)',
-        'Hot, Warm, Follow-up classification',
-        'Dossier prepared for sales team handover'
-      ],
-      badge: 'Actionable Intelligence'
-    }
+      number: '04', title: 'Prioritize', icon: Trophy, signal: 'Ready for action',
+      description: 'Deliver your team a prioritized next move, with the complete context behind it.',
+      details: ['Opportunity scoring', 'Next-best action', 'Sales-ready handover'],
+    },
   ];
 
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveStep((currentStep) => (currentStep + 1) % steps.length);
+    }, 3600);
+
+    return () => window.clearInterval(timer);
+  }, [steps.length]);
+
   return (
-    <section id="operating-model" className="py-20 bg-slate-50/60 border-b border-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-brand-800 text-xs font-semibold uppercase tracking-wider">
-            <span>Operating Architecture</span>
+    <section id="operating-model" className="relative isolate overflow-hidden border-y border-slate-100 bg-gradient-to-b from-white via-sky-50/50 to-white py-20 sm:py-24 lg:py-28">
+      <div className="pointer-events-none absolute inset-0 opacity-70 [background-image:linear-gradient(rgba(14,165,233,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(14,165,233,0.055)_1px,transparent_1px)] [background-size:48px_48px]" />
+      <div className="pointer-events-none absolute -left-48 top-16 h-96 w-96 rounded-full bg-cyan-300/25 blur-[120px]" />
+      <div className="pointer-events-none absolute -right-32 bottom-0 h-[28rem] w-[28rem] rounded-full bg-blue-200/35 blur-[130px]" />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-200 bg-white/90 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-800 shadow-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-300 opacity-75 motion-reduce:animate-none" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-200" />
+              </span>
+              Intelligence pipeline
+            </div>
+            <h2 className="mt-5 text-4xl font-extrabold tracking-[-0.04em] text-slate-950 sm:text-5xl lg:text-6xl">
+              From signal to <span className="text-cyan-600">sales action.</span>
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+              LeadHive AI turns high-volume conversations into focused, sales-ready decisions—without losing the context that makes every customer unique.
+            </p>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            From Conversation to Conversion
-          </h2>
-          <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
-            The four-stage operating model powering LeadHive AI turns unstructured customer messages into structured, prioritized sales opportunities.
-          </p>
+
+          <div className="flex items-center gap-3 self-start rounded-2xl border border-white/80 bg-white/85 p-3 shadow-[0_12px_35px_-20px_rgba(8,145,178,0.35)] backdrop-blur-sm lg:self-auto">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-100 text-cyan-700">
+              <Activity className="h-5 w-5 animate-pulse motion-reduce:animate-none" />
+            </div>
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400">System status</p>
+              <p className="mt-0.5 text-sm font-semibold text-slate-900">Processing live signals</p>
+            </div>
+          </div>
         </div>
 
-        {/* Clean Horizontal Workflow on Desktop / Vertical on Mobile */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-          
-          {/* Connector Line (Desktop) */}
-          <div className="hidden lg:block absolute top-1/4 left-12 right-12 h-0.5 bg-gradient-to-r from-brand-200 via-brand-400 to-emerald-300 z-0" />
+        <div className="relative mt-14">
+          <div className="pointer-events-none absolute left-[12%] right-[12%] top-12 hidden h-px bg-gradient-to-r from-cyan-200 via-cyan-500 to-emerald-300 lg:block" />
+          <div className="pointer-events-none absolute left-[12%] top-[45px] hidden h-3 w-3 rounded-full border-2 border-white bg-cyan-500 shadow-[0_0_18px_5px_rgba(6,182,212,0.48)] animate-process-flow motion-reduce:animate-none lg:block" />
 
-          {steps.map((st, i) => {
-            const Icon = st.icon;
-            return (
-              <div
-                key={st.title}
-                className="relative bg-white border border-slate-200/90 rounded-2xl p-6 shadow-subtle hover:shadow-card hover:border-brand-300 transition-all z-10 flex flex-col justify-between"
-              >
-                <div>
-                  {/* Step Number + Icon Hub */}
-                  <div className="flex items-center justify-between mb-5">
-                    <span className="w-10 h-10 rounded-xl bg-brand-500 text-white font-mono font-bold text-sm flex items-center justify-center shadow-sm">
-                      {st.number}
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+            {steps.map((step, index) => {
+              const Icon = step.icon;
+              const isActive = index === activeStep;
+
+              return (
+                <button
+                  key={step.title}
+                  type="button"
+                  onClick={() => setActiveStep(index)}
+                  aria-pressed={isActive}
+                  className={`group relative overflow-hidden rounded-3xl border p-5 text-left transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 sm:p-6 ${
+                    isActive
+                      ? 'border-cyan-400 bg-gradient-to-b from-cyan-50 to-white shadow-[0_24px_70px_-30px_rgba(8,145,178,0.42)] lg:-translate-y-3'
+                      : 'border-white/90 bg-white/80 shadow-[0_14px_35px_-28px_rgba(15,23,42,0.28)] hover:-translate-y-1 hover:border-cyan-200 hover:bg-white'
+                  }`}
+                >
+                  <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-cyan-400 via-sky-500 to-emerald-400 transition-opacity duration-500 ${isActive ? 'opacity-100' : 'opacity-0'}`} />
+                  <div className="flex items-start justify-between gap-3">
+                    <span className={`flex h-12 w-12 items-center justify-center rounded-2xl border transition-all duration-500 ${isActive ? 'border-cyan-300 bg-cyan-500 text-white shadow-[0_0_30px_rgba(6,182,212,0.32)]' : 'border-slate-200 bg-slate-50 text-cyan-600 group-hover:border-cyan-200 group-hover:bg-cyan-50'}`}>
+                      <Icon className="h-5 w-5" />
                     </span>
-                    <span className="text-[11px] font-semibold text-brand-700 bg-brand-50 px-2 py-0.5 rounded-full border border-brand-100">
-                      {st.badge}
-                    </span>
+                    <span className="font-mono text-xs font-bold tracking-[0.16em] text-slate-400">{step.number}</span>
                   </div>
 
-                  {/* Title & Description */}
-                  <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-                    <Icon className="w-5 h-5 text-brand-500" />
-                    <span>{st.title}</span>
-                  </h3>
-                  <p className="text-sm font-medium text-slate-700 mt-2 leading-relaxed">
-                    {st.description}
-                  </p>
+                  <div className="mt-8">
+                    <p className={`text-[10px] font-bold uppercase tracking-[0.16em] transition-colors ${isActive ? 'text-cyan-700' : 'text-slate-400'}`}>{step.signal}</p>
+                    <h3 className="mt-2 text-2xl font-bold tracking-tight text-slate-900">{step.title}</h3>
+                    <p className="mt-3 min-h-[72px] text-sm leading-relaxed text-slate-600">{step.description}</p>
+                  </div>
 
-                  {/* Bullet details */}
-                  <ul className="mt-4 pt-4 border-t border-slate-100 space-y-2 text-xs text-slate-500">
-                    {st.details.map((d) => (
-                      <li key={d} className="flex items-start gap-1.5">
-                        <span className="text-brand-500 font-bold">•</span>
-                        <span>{d}</span>
+                  <ul className="mt-6 space-y-2 border-t border-slate-100 pt-5">
+                    {step.details.map((detail) => (
+                      <li key={detail} className="flex items-center gap-2 text-xs text-slate-500">
+                        <span className={`h-1.5 w-1.5 rounded-full transition-colors ${isActive ? 'bg-cyan-500 shadow-[0_0_10px_rgba(6,182,212,0.75)]' : 'bg-slate-300'}`} />
+                        {detail}
                       </li>
                     ))}
                   </ul>
-                </div>
 
-                <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
-                  <span>Phase {i + 1} of 4</span>
-                  <span className="font-mono text-brand-600">Autonomous</span>
-                </div>
-              </div>
-            );
-          })}
+                  <div className="mt-7 flex items-center justify-between border-t border-slate-100 pt-4 text-[11px] font-medium">
+                    <span className="text-slate-500">Stage {index + 1} / 4</span>
+                    <span className={`flex items-center gap-1.5 transition-colors ${isActive ? 'text-cyan-700' : 'text-slate-400'}`}>
+                      <span className={`h-1.5 w-1.5 rounded-full ${isActive ? 'bg-cyan-500 animate-pulse motion-reduce:animate-none' : 'bg-slate-300'}`} />
+                      {isActive ? 'Active' : 'Standby'}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Operating Model Summary Pill */}
-        <div className="mt-12 p-4 bg-white border border-slate-200 rounded-2xl max-w-2xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 shadow-subtle">
-          <div className="flex items-center gap-3 text-left">
-            <div className="p-2 rounded-xl bg-emerald-50 text-emerald-600 shrink-0">
-              <ShieldCheck className="w-5 h-5" />
+        <div className="mt-8 flex flex-col gap-5 rounded-3xl border border-cyan-100 bg-white/90 p-5 shadow-[0_18px_50px_-35px_rgba(8,145,178,0.38)] backdrop-blur-md sm:p-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex items-start gap-4">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100">
+              <ShieldCheck className="h-5 w-5" />
             </div>
             <div>
-              <p className="text-xs font-bold text-slate-900">Deterministic Business Guardrails</p>
-              <p className="text-xs text-slate-500">AI executes within verified enterprise knowledge and rules.</p>
+              <p className="text-sm font-semibold text-slate-900">Every action stays inside your guardrails.</p>
+              <p className="mt-1 text-sm leading-relaxed text-slate-500">Approved knowledge, business rules, and complete conversation context travel with every opportunity.</p>
             </div>
           </div>
           <button
             onClick={() => onNavigate('experience')}
-            className="text-xs font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1.5 whitespace-nowrap bg-brand-50 px-3.5 py-2 rounded-lg"
+            className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-cyan-500 px-5 py-3 text-sm font-bold text-white transition-all hover:bg-cyan-600 hover:shadow-[0_10px_35px_rgba(6,182,212,0.3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
           >
-            See Live Processing
-            <ArrowRight className="w-3.5 h-3.5" />
+            <Sparkles className="h-4 w-4" />
+            Explore live processing
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </button>
         </div>
-
       </div>
     </section>
   );
 }
-

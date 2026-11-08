@@ -60,13 +60,9 @@ export function Navbar({ activeRoute, onNavigate, onOpenBooking }) {
             <button
               onClick={() => {
                 analytics.track('experience_opened', { trigger: 'navbar_link' });
-                handleNavClick('experience');
+                handleNavClick('home', 'experience');
               }}
-              className={`px-3 py-2 rounded-lg transition-colors ${
-                activeRoute === 'experience'
-                  ? 'text-slate-900 font-semibold bg-slate-50'
-                  : 'hover:text-slate-900 hover:bg-slate-50'
-              }`}
+              className="px-3 py-2 rounded-lg transition-colors hover:bg-slate-50 hover:text-slate-900"
             >
               Experience Centre
             </button>
@@ -133,13 +129,9 @@ export function Navbar({ activeRoute, onNavigate, onOpenBooking }) {
             <button
               onClick={() => {
                 analytics.track('experience_opened', { trigger: 'mobile_nav' });
-                handleNavClick('experience');
+                handleNavClick('home', 'experience');
               }}
-              className={`px-3 py-2 text-left rounded-lg text-sm font-medium ${
-                activeRoute === 'experience'
-                  ? 'text-slate-900 font-semibold bg-slate-50'
-                  : 'text-slate-700 hover:bg-slate-50'
-              }`}
+              className="px-3 py-2 text-left rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
             >
               Experience Centre
             </button>
