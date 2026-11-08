@@ -9,15 +9,15 @@ import { HumanCenteredOutcome } from './components/home/HumanCenteredOutcome';
 import { IndustryShowcase } from './components/home/IndustryShowcase';
 import { FinalCTA } from './components/home/FinalCTA';
 import { ExperienceCentre } from './components/experience/ExperienceCentre';
-import { BookingModal } from './components/experience/BookingModal';
-import { AnalyticsDrawer } from './components/experience/AnalyticsDrawer';
+
+// import { BookingModal } from './components/experience/BookingModal';
+import { BookDemoPage } from './components/demo/BookDemoPage';
 import { analytics } from './services/analytics';
 
 export function App() {
   const [activeRoute, setActiveRoute] = useState('home'); // 'home' | 'experience'
   const [selectedIndustryForExp, setSelectedIndustryForExp] = useState('real-estate');
-  const [isBookingOpen, setIsBookingOpen] = useState(false);
-  const [bookingTopic, setBookingTopic] = useState('Personalized Demo');
+  // Booking modal removed; using dedicated booking page
   const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false);
   const [eventCount, setEventCount] = useState(0);
 
@@ -64,8 +64,8 @@ export function App() {
   }, []);
 
   const handleOpenBooking = (topic = 'Personalized Demo') => {
-    setBookingTopic(topic);
-    setIsBookingOpen(true);
+    // Redirect to booking page instead of opening modal
+    handleNavigate('booking');
   };
 
   const handleSelectIndustryFromHome = (industryId) => {
@@ -80,8 +80,6 @@ export function App() {
         activeRoute={activeRoute}
         onNavigate={handleNavigate}
         onOpenBooking={handleOpenBooking}
-        onToggleAnalytics={() => setIsAnalyticsOpen(!isAnalyticsOpen)}
-        analyticsCount={eventCount}
       />
 
       {/* Main Content View */}
@@ -126,13 +124,16 @@ export function App() {
               onOpenBooking={handleOpenBooking}
             />
           </div>
-        ) : (
+        ) : activeRoute === 'experience' ? (
           /* Dedicated AI Experience Centre (/experience) */
           <ExperienceCentre
             initialIndustryId={selectedIndustryForExp}
             onOpenBooking={handleOpenBooking}
             onBackToHome={() => handleNavigate('home')}
           />
+        ) : (
+          /* Dedicated Booking Page */
+          <BookDemoPage onNavigate={handleNavigate} />
         )}
       </main>
 
@@ -142,12 +143,18 @@ export function App() {
         onOpenBooking={handleOpenBooking}
       />
 
-      {/* Booking / Demo Modal */}
-      <BookingModal
-        isOpen={isBookingOpen}
-        onClose={() => setIsBookingOpen(false)}
-        topic={bookingTopic}
-      />
+      {/* Booking Modal removed; using dedicated booking page */}
+
+      {/* Optional Discrete Floating Telemetry Pill (Section 09 Analytics) */}
+      <button
+        onClick={() => setIsAnalyticsOpen(!isAnalyticsOpen)}
+        title="View live Section 09 analytics telemetry events"
+        className="fixed bottom-4 right-4 z-40 bg-white/95 backdrop-blur-sm border border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-800 rounded-full px-3 py-1.5 shadow-sm text-[11px] font-mono flex items-center gap-1.5 transition-all opacity-75 hover:opacity-100"
+      >
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+        <span>Telemetry</span>
+        <span className="bg-slate-100 px-1.5 py-0.2 rounded text-[10px] text-slate-600 font-semibold">{eventCount}</span>
+      </button>
 
       {/* Real-time Analytics Telemetry Drawer */}
       <AnalyticsDrawer

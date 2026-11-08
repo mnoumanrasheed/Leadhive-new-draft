@@ -109,72 +109,8 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
   return (
     <div className="min-h-screen bg-slate-50/50 pb-20">
       
-      {/* Experience Centre Top Sub-Nav */}
-      <div className="bg-white border-b border-slate-200 sticky top-20 z-30 shadow-subtle">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between py-3 gap-3">
-            
-            {/* Left: Breadcrumb & Title */}
-            <div className="flex items-center gap-3">
-              <button
-                onClick={onBackToHome}
-                className="text-xs font-semibold text-slate-500 hover:text-slate-800 flex items-center gap-1 transition-colors"
-              >
-                <ArrowLeft className="w-3.5 h-3.5" />
-                <span>Exit to Homepage</span>
-              </button>
-              <span className="text-slate-300">|</span>
-              <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-brand-500 text-white shadow-xs">
-                  EXPERIENCE CENTRE
-                </span>
-                <span className="text-xs font-semibold text-slate-800 hidden md:inline">
-                  {currentIndustry.name} Scenario
-                </span>
-              </div>
-            </div>
-
-            {/* Stepper Dots / Quick Jumper */}
-            <div className="flex items-center gap-1.5 overflow-x-auto text-xs font-medium text-slate-600">
-              {[
-                { num: 1, label: 'Industry' },
-                { num: 2, label: 'Omnichannel Feed' },
-                { num: 3, label: 'AI Intelligence' },
-                { num: 4, label: 'Opportunities' },
-                { num: 5, label: 'Handover' },
-                { num: 6, label: 'Next Steps' }
-              ].map(s => (
-                <button
-                  key={s.num}
-                  onClick={() => navigateScreen(s.num, 'screen_jumped', { targetScreen: s.num })}
-                  className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap text-[11px] ${
-                    currentScreen === s.num
-                      ? 'bg-brand-500 text-white font-bold shadow-xs'
-                      : currentScreen > s.num
-                      ? 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                      : 'text-slate-400 hover:text-slate-700'
-                  }`}
-                >
-                  <span className="w-4 h-4 rounded-full bg-black/10 inline-flex items-center justify-center text-[10px]">
-                    {s.num}
-                  </span>
-                  <span className="hidden sm:inline">{s.label}</span>
-                </button>
-              ))}
-            </div>
-
-            {/* Right: Simulation Notice */}
-            <div className="hidden lg:flex items-center gap-2 text-[11px] text-slate-500 font-mono">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Interactive Sandbox • Simulated Activity</span>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
       {/* Main Experience Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-10">
         
         {/* ========================================================
             SCREEN 01: INDUSTRY SCENARIO SELECTION
