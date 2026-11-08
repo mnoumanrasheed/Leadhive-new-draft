@@ -114,3 +114,12 @@ temp/
 *.swp
 *.swo
 
+# 10. Local visual QA captures (production image assets live in public/)
+/homepage-*.png
+/exp-*.png
+/navbar-*.png
+/leadhive-homepage-*.png
+/leadhive-exp-screen*.png
+/leadhive-booking-modal.png
+/leadhive-telemetry-drawer.png
+

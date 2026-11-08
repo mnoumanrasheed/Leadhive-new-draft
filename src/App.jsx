@@ -9,13 +9,12 @@ import { HumanCenteredOutcome } from './components/home/HumanCenteredOutcome';
 import { IndustryShowcase } from './components/home/IndustryShowcase';
 import { FinalCTA } from './components/home/FinalCTA';
 import { ExperienceCentre } from './components/experience/ExperienceCentre';
-
-// import { BookingModal } from './components/experience/BookingModal';
+import { AnalyticsDrawer } from './components/experience/AnalyticsDrawer';
 import { BookDemoPage } from './components/demo/BookDemoPage';
 import { analytics } from './services/analytics';
 
 export function App() {
-  const [activeRoute, setActiveRoute] = useState('home'); // 'home' | 'experience'
+  const [activeRoute, setActiveRoute] = useState('home');
   const [selectedIndustryForExp, setSelectedIndustryForExp] = useState('real-estate');
   // Booking modal removed; using dedicated booking page
   const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false);
@@ -28,6 +27,8 @@ export function App() {
       const hash = window.location.hash;
       if (path === '/experience' || hash === '#experience') {
         setActiveRoute('experience');
+      } else if (path === '/book-demo' || hash === '#book-demo') {
+        setActiveRoute('booking');
       } else {
         setActiveRoute('home');
       }
@@ -48,6 +49,9 @@ export function App() {
     if (route === 'experience') {
       window.history.pushState(null, '', '#experience');
       document.title = 'LeadHive AI: Interactive AI Experience Centre';
+    } else if (route === 'booking') {
+      window.history.pushState(null, '', '#book-demo');
+      document.title = 'Book a LeadHive AI Demo';
     } else {
       window.history.pushState(null, '', '#');
       document.title = 'LeadHive AI: Autonomous Sales Intelligence Platform';
@@ -63,8 +67,7 @@ export function App() {
     return unsub;
   }, []);
 
-  const handleOpenBooking = (topic = 'Personalized Demo') => {
-    // Redirect to booking page instead of opening modal
+  const handleOpenBooking = () => {
     handleNavigate('booking');
   };
 
@@ -142,8 +145,6 @@ export function App() {
         onNavigate={handleNavigate}
         onOpenBooking={handleOpenBooking}
       />
-
-      {/* Booking Modal removed; using dedicated booking page */}
 
       {/* Optional Discrete Floating Telemetry Pill (Section 09 Analytics) */}
       <button
