@@ -134,31 +134,8 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
               </p>
             </div>
 
-            {/* Quick action buttons: Start Default vs Explore */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-              <button
-                onClick={() => {
-                  setSelectedIndustryId('real-estate');
-                  navigateScreen(2, 'industry_skipped', { default: 'real-estate' });
-                }}
-                className="w-full sm:w-auto px-6 py-3 bg-brand-500 hover:bg-brand-600 text-white rounded-xl font-bold shadow-brand flex items-center justify-center gap-2 transition-all"
-              >
-                <span>Start with Default Real Estate Scenario</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => {
-                  const el = document.getElementById('industry-grid');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="w-full sm:w-auto px-5 py-3 bg-white border border-slate-200 text-slate-700 hover:text-slate-900 rounded-xl font-semibold shadow-subtle text-sm"
-              >
-                Choose Another Industry Below
-              </button>
-            </div>
-
             {/* Industry Selection Cards */}
-            <div id="industry-grid" className="pt-6">
+            <div id="industry-grid" className="pt-4">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-base font-bold text-slate-900">Select a Commercial Vertical:</h3>
                 <span className="text-xs text-slate-500">Adapts qualification rules & scoring weights</span>
