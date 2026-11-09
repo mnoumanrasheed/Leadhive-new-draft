@@ -10,9 +10,11 @@ import { IndustryShowcase } from './components/home/IndustryShowcase';
 import { FinalCTA } from './components/home/FinalCTA';
 import { ExperienceCentre } from './components/experience/ExperienceCentre';
 import { BookDemoPage } from './components/demo/BookDemoPage';
+import { PageLoader } from './components/common/PageLoader';
 
 export function App() {
   const [activeRoute, setActiveRoute] = useState('home');
+  const [isLoading, setIsLoading] = useState(true);
   // Booking modal removed; using dedicated booking page
 
   // Sync route with URL hash or pathname
@@ -63,6 +65,8 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans flex flex-col selection:bg-brand-500 selection:text-white">
+      {isLoading && <PageLoader onComplete={() => setIsLoading(false)} />}
+
       {/* Top Navigation */}
       <Navbar
         activeRoute={activeRoute}

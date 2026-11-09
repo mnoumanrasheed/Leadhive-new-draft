@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Sparkles, MessageSquare, Bot } from 'lucide-react';
+import { ArrowRight, MessageSquare, Bot } from 'lucide-react';
 import { ChannelIcon } from '../common/ChannelIcon';
 import { CHANNELS_INFO } from '../../data/scenarios';
 import { analytics } from '../../services/analytics';
@@ -83,21 +83,6 @@ export function ChannelGrid({ onNavigate }) {
               </div>
             );
           })}
-        </div>
-
-        {/* Section CTA */}
-        <div className="text-center mt-12">
-          <button
-            onClick={() => {
-              analytics.track('experience_opened', { trigger: 'channel_grid_cta' });
-              onNavigate('experience');
-            }}
-            className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl font-semibold text-slate-800 bg-brand-50 hover:bg-brand-100 border border-brand-200 transition-colors shadow-xs"
-          >
-            <Sparkles className="w-4 h-4 text-brand-600" />
-            <span>Explore the AI Experience Centre</span>
-            <ArrowRight className="w-4 h-4 text-brand-600" />
-          </button>
         </div>
 
       </div>
