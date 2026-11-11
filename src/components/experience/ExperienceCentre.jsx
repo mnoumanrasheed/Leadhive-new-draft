@@ -3,7 +3,7 @@ import {
   Building2, Stethoscope, GraduationCap, Car, ShoppingBag, Briefcase,
   Play, Pause, RotateCcw, ArrowRight, ArrowLeft, CheckCircle2, Flame, Clock, 
   AlertCircle, Sparkles, Send, ShieldCheck, ExternalLink, ChevronRight,
-  TrendingUp, Users, Target, UserCheck, Check, MessageSquare, Zap
+  TrendingUp, Users, Target, UserCheck, MessageSquare, Zap
 } from 'lucide-react';
 import { ChannelIcon } from '../common/ChannelIcon';
 import { INDUSTRIES, CHANNELS_INFO } from '../../data/scenarios';
@@ -116,7 +116,7 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
             SCREEN 01: INDUSTRY SCENARIO SELECTION
         ======================================================== */}
         {currentScreen === 1 && (
-          <div className="space-y-8 animate-fadeIn max-w-5xl mx-auto">
+          <div className="space-y-8 animate-fadeIn max-w-6xl mx-auto">
             {/* Landing Hero */}
             <div className="text-center space-y-4 pt-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-brand-800 text-xs font-semibold">
@@ -141,65 +141,33 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
                 <span className="text-xs text-slate-500">Adapts qualification rules & scoring weights</span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {INDUSTRIES.map(ind => {
                   const Icon = ICON_MAP[ind.icon] || Building2;
-                  const isSelected = selectedIndustryId === ind.id;
                   return (
                     <div
                       key={ind.id}
-                      onClick={() => setSelectedIndustryId(ind.id)}
-                      className={`h-full cursor-pointer rounded-2xl border p-5 transition-all text-left flex flex-col justify-between ${
-                        isSelected 
-                          ? 'bg-white border-brand-500 ring-2 ring-brand-300 shadow-brand' 
-                          : 'bg-white border-slate-200 hover:border-slate-300 shadow-subtle'
-                      }`}
+                      className="h-full min-h-[310px] rounded-3xl border border-slate-200 bg-white p-7 sm:p-8 text-left shadow-[0_22px_55px_-30px_rgba(15,23,42,0.38)]"
                     >
                       <div>
                         <div className="flex items-center justify-between mb-3">
-                          <div className={`p-2.5 rounded-xl ${isSelected ? 'bg-brand-500 text-white' : 'bg-slate-100 text-slate-700'}`}>
+                          <div className="p-3 rounded-2xl bg-slate-100 text-slate-700">
                             <Icon className="w-5 h-5" />
                           </div>
-                          {isSelected && (
-                            <span className="text-[11px] font-bold text-brand-700 bg-brand-50 px-2.5 py-0.5 rounded-full border border-brand-200 flex items-center gap-1">
-                              <Check className="w-3 h-3" /> Selected
-                            </span>
-                          )}
                         </div>
-                        <h4 className="text-base font-bold text-slate-900">{ind.name}</h4>
-                        <p className="text-xs text-slate-500 mt-1 line-clamp-2">{ind.tagline}</p>
+                        <h4 className="text-lg font-bold tracking-[-0.02em] text-slate-900">{ind.name}</h4>
+                        <p className="text-sm leading-5 text-slate-500 mt-1.5">{ind.tagline}</p>
 
-                        <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] space-y-1">
-                          <p className="text-slate-400">Sample Scenario:</p>
-                          <p className="font-semibold leading-4 text-slate-800 whitespace-normal">{ind.description}</p>
-                          <p className="text-rose-600 font-bold">Target Score: {ind.defaultLead.score}/100 ({ind.defaultLead.temperature})</p>
+                        <div className="mt-6 pt-5 border-t border-slate-100">
+                          <p className="font-semibold text-sm leading-5 text-slate-800 whitespace-normal">{ind.description}</p>
                         </div>
                       </div>
-
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedIndustryId(ind.id);
-                          navigateScreen(2, 'industry_selected', { industry: ind.id });
-                        }}
-                        className={`mt-4 w-full py-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors ${
-                          isSelected ? 'bg-brand-500 text-white' : 'bg-slate-50 text-slate-700 hover:bg-slate-100 border border-slate-200'
-                        }`}
-                      >
-                        <span>Confirm Scenario</span>
-                        <ChevronRight className="w-3.5 h-3.5" />
-                      </button>
                     </div>
                   );
                 })}
               </div>
             </div>
 
-            {/* Explanatory notes per spec */}
-            <div className="p-4 bg-slate-100/70 border border-slate-200 rounded-2xl text-xs text-slate-600 space-y-1">
-              <p className="font-semibold text-slate-800">Dynamic Scenario Initialization:</p>
-              <p>Selecting an industry dynamically configures domain knowledge, customer personas, conversation channels, scoring weights, and recommended sales actions.</p>
-            </div>
           </div>
         )}
 

@@ -52,12 +52,6 @@ export function Navbar({ activeRoute, onNavigate, onOpenBooking }) {
               How It Works
             </button>
             <button
-              onClick={() => handleNavClick('home', 'industries-section')}
-              className="px-3 py-2 rounded-lg transition-colors hover:text-slate-900 hover:bg-slate-50"
-            >
-              Industries
-            </button>
-            <button
               onClick={() => {
                 analytics.track('experience_opened', { trigger: 'navbar_link' });
                 handleNavClick('home', 'experience');
@@ -66,18 +60,24 @@ export function Navbar({ activeRoute, onNavigate, onOpenBooking }) {
             >
               Experience Centre
             </button>
+            <button
+              onClick={() => handleNavClick('home', 'contact-section')}
+              className="px-3 py-2 rounded-lg transition-colors hover:bg-slate-50 hover:text-slate-900"
+            >
+              Contact Us
+            </button>
           </nav>
 
           {/* Right Action CTA - Clean Single Action */}
           <div className="hidden sm:flex items-center">
             <button
               onClick={() => {
-                analytics.track('book_demo_clicked', { source: 'navbar_button' });
-                onOpenBooking('Personalized Demo');
+                analytics.track('experience_opened', { trigger: 'navbar_test_demo' });
+                handleNavClick('experience');
               }}
               className="px-4 py-2 text-sm font-semibold text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-xl transition-colors border border-slate-200"
             >
-              Book Demo
+              Test Demo
             </button>
           </div>
 
@@ -85,12 +85,12 @@ export function Navbar({ activeRoute, onNavigate, onOpenBooking }) {
           <div className="flex lg:hidden items-center gap-2">
             <button
               onClick={() => {
-                analytics.track('book_demo_clicked', { source: 'mobile_nav_button' });
-                onOpenBooking('Personalized Demo');
+                analytics.track('experience_opened', { trigger: 'mobile_test_demo' });
+                handleNavClick('experience');
               }}
               className="sm:hidden px-3 py-1.5 text-xs font-semibold text-slate-700 border border-slate-200 rounded-lg hover:bg-slate-50"
             >
-              Book Demo
+              Test Demo
             </button>
 
             <button
@@ -121,12 +121,6 @@ export function Navbar({ activeRoute, onNavigate, onOpenBooking }) {
               How It Works
             </button>
             <button
-              onClick={() => handleNavClick('home', 'industries-section')}
-              className="px-3 py-2 text-left rounded-lg text-slate-700 font-medium hover:bg-slate-50 text-sm"
-            >
-              Industries
-            </button>
-            <button
               onClick={() => {
                 analytics.track('experience_opened', { trigger: 'mobile_nav' });
                 handleNavClick('home', 'experience');
@@ -140,12 +134,12 @@ export function Navbar({ activeRoute, onNavigate, onOpenBooking }) {
           <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
             <button
               onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenBooking('Mobile Menu Demo');
+                analytics.track('experience_opened', { trigger: 'mobile_menu_test_demo' });
+                handleNavClick('experience');
               }}
               className="w-full py-2.5 text-center text-sm font-semibold text-slate-700 border border-slate-200 rounded-xl hover:bg-slate-50"
             >
-              Book Demo
+              Test Demo
             </button>
           </div>
         </div>

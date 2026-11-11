@@ -6,7 +6,6 @@ import { ChannelGrid } from './components/home/ChannelGrid';
 import { OperatingModel } from './components/home/OperatingModel';
 import { LeadDashboardPreview } from './components/home/LeadDashboardPreview';
 import { HumanCenteredOutcome } from './components/home/HumanCenteredOutcome';
-import { IndustryShowcase } from './components/home/IndustryShowcase';
 import { FinalCTA } from './components/home/FinalCTA';
 import { ExperienceCentre } from './components/experience/ExperienceCentre';
 import { BookDemoPage } from './components/demo/BookDemoPage';
@@ -102,10 +101,7 @@ export function App() {
               onOpenBooking={handleOpenBooking}
             />
 
-            {/* Section 06: Intelligence Across Industries */}
-            <IndustryShowcase />
-
-            {/* Section 07: Full Interactive Experience Centre */}
+            {/* Section 06: Full Interactive Experience Centre */}
             <ExperienceCentre
               onOpenBooking={handleOpenBooking}
               onBackToHome={() => handleNavigate('home')}

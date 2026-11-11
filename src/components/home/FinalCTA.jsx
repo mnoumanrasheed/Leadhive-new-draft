@@ -29,31 +29,35 @@ export function FinalCTA({ onOpenBooking }) {
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white via-cyan-50/35 to-white py-16 sm:py-20">
+    <section id="contact-section" className="relative overflow-hidden bg-gradient-to-b from-white via-cyan-50/35 to-white py-16 sm:py-20">
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[34rem] w-[62rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-100/45 blur-[120px]" />
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_36px_100px_-52px_rgba(15,23,42,0.42)] lg:grid-cols-[0.88fr_1.12fr]">
-          <div className="relative overflow-hidden bg-slate-950 px-6 py-10 sm:px-10 sm:py-14">
-            <div className="pointer-events-none absolute inset-0 opacity-60 [background-image:linear-gradient(rgba(103,232,249,0.09)_1px,transparent_1px),linear-gradient(90deg,rgba(103,232,249,0.09)_1px,transparent_1px)] [background-size:32px_32px]" />
-            <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-cyan-400/25 blur-[100px]" />
-            <div className="pointer-events-none absolute -bottom-28 -left-20 h-72 w-72 rounded-full bg-blue-500/20 blur-[100px]" />
+        <div className="mb-7 text-center">
+          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-cyan-700">Ready to connect</p>
+          <p className="mt-2 text-xl font-extrabold tracking-[-0.025em] text-slate-950 sm:text-2xl">Let’s turn your next conversation into a qualified opportunity.</p>
+        </div>
+        <div className="grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-start lg:gap-16">
+          <div className="relative overflow-hidden bg-transparent px-2 py-4 sm:px-4 sm:py-8 lg:px-0">
+            <div className="pointer-events-none absolute inset-0 opacity-60 [background-image:linear-gradient(rgba(14,165,233,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(14,165,233,0.08)_1px,transparent_1px)] [background-size:32px_32px]" />
+            <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-cyan-100/70 blur-[100px]" />
+            <div className="pointer-events-none absolute -bottom-28 -left-20 h-72 w-72 rounded-full bg-blue-100/70 blur-[100px]" />
 
             <div className="relative">
-              <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/25 bg-cyan-300/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-cyan-100">
+              <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/60 bg-cyan-50 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-cyan-700">
                 <Sparkles className="h-3.5 w-3.5" />
                 Instant interactive sandbox
               </div>
 
-              <h2 className="mt-7 max-w-md text-4xl font-extrabold leading-[1.04] tracking-[-0.05em] text-white sm:text-5xl">
+              <h2 className="mt-7 max-w-md text-4xl font-extrabold leading-[1.04] tracking-[-0.05em] text-slate-950 sm:text-5xl">
                 Ready to Experience Autonomous Sales Intelligence?
               </h2>
 
-              <p className="mt-6 max-w-md text-base leading-relaxed text-slate-300">
+              <p className="mt-6 max-w-md text-base leading-relaxed text-slate-600">
                 See how LeadHive AI turns conversations into qualified opportunities. No registration, credentials or integrations required to run the simulation.
               </p>
 
-              <div className="mt-9 flex flex-wrap gap-x-5 gap-y-3 text-xs text-slate-300">
+              <div className="mt-9 flex flex-wrap gap-x-5 gap-y-3 text-xs text-slate-600">
                 {['Zero setup time', 'Simulated real-world scenarios', 'Compliant sandbox environment'].map((item) => (
                   <span key={item} className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-cyan-300" />
@@ -64,7 +68,7 @@ export function FinalCTA({ onOpenBooking }) {
             </div>
           </div>
 
-          <div className="bg-white p-6 sm:p-9 lg:p-10">
+          <div className="bg-transparent px-2 py-4 sm:px-4 sm:py-8 lg:px-0">
             <div className="flex items-start justify-between gap-5 border-b border-slate-100 pb-6">
               <div>
                 <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-cyan-700">Reserve your session</p>
