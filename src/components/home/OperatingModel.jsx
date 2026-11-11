@@ -63,7 +63,7 @@ export function OperatingModel({ onNavigate }) {
               From signal to <span className="text-cyan-600">sales action.</span>
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
-              LeadHive AI turns high-volume conversations into focused, sales-ready decisions—without losing the context that makes every customer unique.
+              LeadHive AI turns high-volume conversations into focused, sales-ready decisions without losing the context that makes every customer unique.
             </p>
           </div>
 

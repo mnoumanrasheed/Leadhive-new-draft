@@ -1,35 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import {
+  ArrowDown,
   ArrowRight,
-  CheckCircle2,
-  Flame,
+  BarChart3,
+  BrainCircuit,
+  Check,
+  Filter,
+  Home,
+  MapPin,
   MessageCircleMore,
-  Pause,
-  Play,
   Sparkles,
   Target,
-  Zap,
+  UsersRound,
+  WalletCards,
 } from 'lucide-react';
 import { ChannelIcon } from '../common/ChannelIcon';
 import { analytics } from '../../services/analytics';
 
-const intelligenceSteps = [
-  { label: 'Intent detected', detail: 'Buying within 30 days', icon: Target },
-  { label: 'Lead qualified', detail: 'Budget and location matched', icon: CheckCircle2 },
-  { label: 'Action prepared', detail: 'VIP consultation recommended', icon: Zap },
+const channels = [
+  { name: 'Facebook', channel: 'facebook' },
+  { name: 'Instagram', channel: 'instagram' },
+  { name: 'WhatsApp Business', channel: 'whatsapp' },
+  { name: 'YouTube', channel: 'youtube' },
+  { name: 'Website Chat', channel: 'website' },
+  { name: 'TikTok', channel: 'tiktok' },
+  { name: 'Snapchat', channel: 'snapchat' },
+];
+
+const processSteps = [
+  { label: 'Engage', detail: 'Responds on every channel', icon: MessageCircleMore },
+  { label: 'Understand', detail: 'Identifies intent and needs', icon: BrainCircuit },
+  { label: 'Qualify', detail: 'Captures buying signals', icon: Filter },
+  { label: 'Prioritize', detail: 'Scores every opportunity', icon: BarChart3 },
+  { label: 'Handover', detail: 'Routes leads to your team', icon: UsersRound },
 ];
 
 export function Hero({ onNavigate }) {
   const [activeStep, setActiveStep] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-
   useEffect(() => {
-    if (isPaused) return undefined;
     const interval = window.setInterval(() => {
-      setActiveStep((step) => (step + 1) % intelligenceSteps.length);
-    }, 2400);
+      setActiveStep((step) => (step + 1) % processSteps.length);
+    }, 1700);
     return () => window.clearInterval(interval);
-  }, [isPaused]);
+  }, []);
 
   const openExperience = () => {
     analytics.track('experience_started', { trigger: 'hero_primary_cta' });
@@ -42,7 +55,7 @@ export function Hero({ onNavigate }) {
       <div className="pointer-events-none absolute -left-48 top-24 h-[32rem] w-[32rem] rounded-full bg-cyan-50 blur-[120px]" />
       <div className="pointer-events-none absolute -right-40 top-0 h-[34rem] w-[34rem] rounded-full bg-sky-50 blur-[130px]" />
 
-      <div className="relative mx-auto grid min-h-[calc(100svh-73px)] max-w-7xl items-center gap-12 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8 lg:py-16 xl:gap-10">
+      <div className="relative mx-auto grid min-h-[calc(100svh-73px)] max-w-[90rem] items-center gap-12 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8 lg:py-16 xl:gap-12">
         <div className="lg:col-span-5">
           <div className="hero-reveal inline-flex items-center gap-2 rounded-full border border-cyan-200 bg-white px-4 py-1.5 text-xs font-semibold tracking-wide text-cyan-800 shadow-[0_8px_28px_-20px_rgba(8,145,178,0.55)]">
             <span className="relative flex h-2 w-2">
@@ -88,167 +101,154 @@ export function Hero({ onNavigate }) {
         </div>
 
         <div className="hero-reveal hero-reveal-delay-2 relative lg:col-span-7">
-          <div className="pointer-events-none absolute -inset-6 rounded-[3rem] bg-cyan-100/55 blur-3xl" />
+          <div className="pointer-events-none absolute -inset-5 rounded-[3rem] bg-cyan-100/60 blur-3xl" />
 
-          <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white p-3 shadow-[0_38px_90px_-45px_rgba(15,23,42,0.3)] sm:p-4">
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_82%_0%,rgba(34,211,238,0.11),transparent_32%),radial-gradient(circle_at_3%_100%,rgba(14,165,233,0.07),transparent_30%)]" />
-            <div className="pointer-events-none absolute inset-0 opacity-50 [background-image:linear-gradient(rgba(148,163,184,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.08)_1px,transparent_1px)] [background-size:32px_32px]" />
+          <div className="conversion-visual relative overflow-hidden rounded-[2rem] border border-cyan-100 bg-white/95 p-3 shadow-[0_38px_90px_-45px_rgba(8,145,178,0.38)] backdrop-blur sm:p-4">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_48%_34%,rgba(34,211,238,0.14),transparent_27%),radial-gradient(circle_at_95%_100%,rgba(14,165,233,0.08),transparent_30%)]" />
+            <div className="pointer-events-none absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(148,163,184,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.08)_1px,transparent_1px)] [background-size:28px_28px]" />
 
-            <div className="relative overflow-hidden rounded-[1.45rem] border border-slate-200 bg-white">
-              <div className="flex items-center justify-between border-b border-slate-100 px-4 py-3.5 sm:px-5">
-                <div className="flex items-center gap-3">
-                  <div className="flex gap-1.5" aria-hidden="true">
-                    <span className="h-2 w-2 rounded-full bg-slate-300" />
-                    <span className="h-2 w-2 rounded-full bg-slate-200" />
-                    <span className="h-2 w-2 rounded-full bg-slate-100" />
-                  </div>
-                  <span className="hidden h-4 w-px bg-slate-200 sm:block" />
-                  <div className="hidden items-center gap-2 sm:flex">
-                    <img src="/leadhive-icon.png" alt="" className="h-5 w-5 object-contain" />
-                    <span className="text-[11px] font-semibold tracking-wide text-slate-600">LeadHive Intelligence</span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <span className="flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.12em] text-emerald-700 sm:text-[10px]">
-                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500 motion-reduce:animate-none" />
-                    Live
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => setIsPaused((paused) => !paused)}
-                    className="flex h-7 w-7 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 transition-colors hover:border-cyan-200 hover:bg-cyan-50 hover:text-cyan-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
-                    aria-label={isPaused ? 'Resume intelligence demo' : 'Pause intelligence demo'}
-                  >
-                    {isPaused ? <Play className="h-3.5 w-3.5" /> : <Pause className="h-3.5 w-3.5" />}
-                  </button>
-                </div>
+            <div className="relative flex items-center justify-between border-b border-slate-100 px-2 pb-3 sm:px-3">
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">From conversation to conversion</p>
+                <p className="mt-1 text-sm font-extrabold tracking-tight text-slate-900">Multi-channel intelligence, working live</p>
               </div>
+              <span className="hidden items-center gap-1.5 rounded-full border border-cyan-200 bg-cyan-50/80 px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.12em] text-cyan-800 sm:flex">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-500 motion-reduce:animate-none" />
+                Live AI processing
+              </span>
+            </div>
 
-              <div className="relative p-4 sm:p-5 lg:p-6">
-                <div className="mb-4 grid grid-cols-3 gap-2 sm:gap-3">
-                  {[
-                    ['Live conversations', '1,428', '+18%'],
-                    ['Qualified today', '384', '26.8%'],
-                    ['Ready to act', '142', 'High intent'],
-                  ].map(([label, value, detail], index) => (
-                    <div key={label} className="rounded-xl border border-slate-200 bg-white p-3 shadow-[0_12px_30px_-26px_rgba(15,23,42,0.32)] sm:rounded-2xl sm:p-4">
-                      <p className="truncate text-[8px] font-bold uppercase tracking-[0.12em] text-slate-400 sm:text-[10px]">{label}</p>
-                      <div className="mt-2 flex items-end justify-between gap-1">
-                        <span className="text-lg font-extrabold tracking-tight text-slate-900 sm:text-2xl">{value}</span>
-                        <span className={`hidden pb-0.5 text-[9px] font-semibold sm:block ${index === 2 ? 'text-rose-500' : 'text-cyan-600'}`}>{detail}</span>
-                      </div>
+            <div className="relative mt-3 sm:h-[340px]">
+              <svg className="pointer-events-none absolute inset-0 hidden h-full w-full sm:block" viewBox="0 0 700 340" preserveAspectRatio="none" aria-hidden="true">
+                <defs>
+                  <linearGradient id="signalGradient" x1="0" x2="1">
+                    <stop offset="0" stopColor="#a5f3fc" />
+                    <stop offset="0.62" stopColor="#22d3ee" />
+                    <stop offset="1" stopColor="#06b6d4" />
+                  </linearGradient>
+                  <filter id="signalGlow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                  </filter>
+                </defs>
+                {[40, 82, 124, 166, 208, 250, 292].map((y, index) => (
+                  <path key={y} d={`M 145 ${y} C 220 ${y}, 216 170, 306 170`} className={`hero-signal-path hero-signal-path-${index + 1}`} />
+                ))}
+                <path d="M 390 170 C 424 170, 430 170, 462 170" className="hero-output-path" />
+                <circle r="4" fill="#22d3ee" filter="url(#signalGlow)" className="hero-signal-dot">
+                  <animateMotion dur="3.2s" repeatCount="indefinite" path="M 145 40 C 220 40, 216 170, 306 170" />
+                </circle>
+                <circle r="4" fill="#22d3ee" filter="url(#signalGlow)" className="hero-signal-dot">
+                  <animateMotion dur="3.2s" begin="-1.1s" repeatCount="indefinite" path="M 145 166 C 220 166, 216 170, 306 170" />
+                </circle>
+                <circle r="4" fill="#22d3ee" filter="url(#signalGlow)" className="hero-signal-dot">
+                  <animateMotion dur="3.2s" begin="-2.1s" repeatCount="indefinite" path="M 145 292 C 220 292, 216 170, 306 170" />
+                </circle>
+                <circle r="4.5" fill="#06b6d4" filter="url(#signalGlow)">
+                  <animateMotion dur="2s" repeatCount="indefinite" path="M 390 170 C 424 170, 430 170, 462 170" />
+                </circle>
+              </svg>
+
+              <div className="relative grid gap-4 sm:h-full sm:grid-cols-[1.05fr_1fr_1.28fr] sm:items-center sm:gap-3">
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-1 sm:gap-2">
+                  {channels.map(({ name, channel }, index) => (
+                    <div
+                      key={name}
+                      className="hero-channel-card flex h-9 items-center gap-2 rounded-xl border border-slate-200/90 bg-white px-2.5 shadow-[0_9px_25px_-22px_rgba(15,23,42,0.45)] sm:h-8"
+                      style={{ '--channel-delay': `${index * 140}ms` }}
+                    >
+                      <ChannelIcon channel={channel} className="h-5 w-5 rounded-md" />
+                      <span className="truncate text-[9px] font-bold text-slate-700 lg:text-[10px]">{name}</span>
+                      <span className="ml-auto h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-400 shadow-[0_0_0_3px_rgba(34,211,238,0.12)]" />
                     </div>
                   ))}
                 </div>
 
-                <div className="grid gap-4 md:grid-cols-[0.92fr_1.08fr]">
-                  <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-[0_16px_36px_-30px_rgba(15,23,42,0.3)] sm:p-5">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-cyan-700">Incoming signal</p>
-                        <p className="mt-1 text-xs font-semibold text-slate-600">Customer conversation</p>
-                      </div>
-                      <span className="rounded-md bg-slate-50 px-2 py-1 font-mono text-[9px] text-slate-400">NOW</span>
-                    </div>
+                <div className="relative mx-auto flex h-40 w-40 items-center justify-center sm:h-40 sm:w-40 lg:h-44 lg:w-44">
+                  <span className="hero-core-orbit absolute inset-0 rounded-full border border-cyan-200/80" />
+                  <span className="hero-core-orbit-reverse absolute inset-3 rounded-full border border-dashed border-cyan-300/90" />
+                  <span className="absolute inset-5 animate-pulse-subtle rounded-full bg-cyan-100/60 blur-xl motion-reduce:animate-none" />
+                  <div className="hero-ai-core relative flex h-[7.7rem] w-[7.7rem] flex-col items-center justify-center rounded-full border border-cyan-300 bg-white text-center shadow-[0_18px_45px_-20px_rgba(6,182,212,0.62)] lg:h-[8.4rem] lg:w-[8.4rem]">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-400 to-teal-500 text-white shadow-[0_10px_25px_-12px_rgba(6,182,212,0.9)]">
+                      <Sparkles className="h-5 w-5" />
+                    </span>
+                    <p className="mt-2 text-base font-black tracking-[-0.04em] text-slate-950">LeadHive AI</p>
+                    <p className="mt-1 max-w-[104px] whitespace-nowrap text-[7px] leading-3 font-bold uppercase tracking-[0.06em] text-cyan-700">Engage · Understand</p>
+                    <p className="max-w-[104px] whitespace-nowrap text-[7px] leading-3 font-bold uppercase tracking-[0.06em] text-cyan-700">Qualify · Prioritize</p>
+                  </div>
+                </div>
 
-                    <div className="mt-5 flex items-center gap-3">
-                      <div className="relative">
-                        <ChannelIcon channel="whatsapp" className="h-10 w-10 rounded-xl" />
-                        <span className="absolute -bottom-1 -right-1 h-3 w-3 rounded-full border-2 border-white bg-emerald-500" />
-                      </div>
-                      <div>
-                        <p className="text-sm font-bold text-slate-900">WhatsApp Business</p>
-                        <p className="mt-0.5 text-[10px] text-slate-400">DHA Islamabad • Just now</p>
-                      </div>
-                    </div>
+                <div className="sm:hidden">
+                  <ArrowDown className="mx-auto h-5 w-5 animate-bounce text-cyan-500 motion-reduce:animate-none" />
+                </div>
 
-                    <div className="mt-5 rounded-2xl rounded-tl-md border border-slate-200 bg-white p-4 shadow-[0_10px_24px_-22px_rgba(15,23,42,0.3)]">
-                      <p className="text-[12px] leading-5 text-slate-600 sm:text-[13px]">
-                        “I’m looking for a 5-marla house in DHA. My budget is around PKR 30M and I want to buy this month.”
-                      </p>
-                    </div>
-
-                    <div className="mt-4 flex items-center gap-2 text-[10px] font-medium text-slate-400">
-                      <MessageCircleMore className="h-3.5 w-3.5 text-cyan-500" />
-                      Analysing conversation context
-                      <span className="flex gap-0.5" aria-hidden="true">
-                        <i className="h-1 w-1 animate-bounce rounded-full bg-cyan-400 [animation-delay:-.3s] motion-reduce:animate-none" />
-                        <i className="h-1 w-1 animate-bounce rounded-full bg-cyan-400 [animation-delay:-.15s] motion-reduce:animate-none" />
-                        <i className="h-1 w-1 animate-bounce rounded-full bg-cyan-400 motion-reduce:animate-none" />
+                <div className="relative overflow-hidden rounded-2xl border border-cyan-200 bg-white shadow-[0_22px_50px_-30px_rgba(8,145,178,0.55)]">
+                  <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400" />
+                  <div className="border-b border-slate-100 px-3.5 py-3">
+                    <p className="text-[8px] font-black uppercase tracking-[0.19em] text-cyan-700">Sales opportunity</p>
+                    <div className="mt-2 flex items-center gap-2">
+                      <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600">
+                        <Target className="h-4 w-4" />
+                      </span>
+                      <div className="min-w-0">
+                        <p className="truncate text-[13px] font-black text-slate-950">Qualified Lead</p>
+                        <p className="mt-0.5 text-[8px] font-semibold text-slate-400">AI confidence 92%</p>
+                      </div>
+                      <span className="ml-auto flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white shadow-[0_7px_18px_-8px_rgba(16,185,129,0.9)]">
+                        <Check className="h-4 w-4 stroke-[3]" />
                       </span>
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-cyan-200 bg-white p-4 shadow-[0_16px_38px_-30px_rgba(6,182,212,0.36)] sm:p-5">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-cyan-500 text-white shadow-[0_8px_24px_rgba(34,211,238,0.24)]">
-                          <Sparkles className="h-4 w-4" />
-                        </span>
-                        <div>
-                          <p className="text-xs font-bold text-slate-900">AI opportunity brief</p>
-                          <p className="mt-0.5 text-[9px] text-slate-400">Updated in real time</p>
-                        </div>
+                  <div className="space-y-2.5 px-3.5 py-3">
+                    {[
+                      { label: 'Intent', value: 'Buying', icon: Target },
+                      { label: 'Interest', value: '5 Marla House', icon: Home },
+                      { label: 'Location', value: 'DHA Islamabad', icon: MapPin },
+                      { label: 'Budget', value: 'PKR 30 Million', icon: WalletCards },
+                    ].map(({ label, value, icon: Icon }) => (
+                      <div key={label} className="grid grid-cols-[18px_52px_1fr] items-center gap-1 border-b border-slate-100 pb-2 last:border-0 last:pb-0">
+                        <Icon className="h-3.5 w-3.5 text-cyan-500" />
+                        <span className="text-[8px] font-bold text-slate-500">{label}</span>
+                        <span className="truncate text-[9px] font-bold text-slate-800">{value}</span>
                       </div>
-                      <div className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-cyan-200 bg-cyan-50 text-sm font-black text-cyan-700">
-                        92
-                      </div>
-                    </div>
-
-                    <div className="mt-5 space-y-2">
-                      {intelligenceSteps.map((step, index) => {
-                        const Icon = step.icon;
-                        const isActive = activeStep === index;
-                        const isComplete = index <= activeStep;
-                        return (
-                          <button
-                            type="button"
-                            key={step.label}
-                            onClick={() => setActiveStep(index)}
-                            className={`flex w-full items-center gap-3 rounded-xl border p-3 text-left transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 ${
-                              isActive
-                                ? 'translate-x-1 border-cyan-200 bg-white shadow-[0_10px_28px_-20px_rgba(6,182,212,0.45)]'
-                                : 'border-slate-100 bg-white'
-                            }`}
-                          >
-                            <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors ${isComplete ? 'bg-cyan-500 text-white' : 'bg-slate-50 text-slate-400'}`}>
-                              <Icon className="h-4 w-4" />
-                            </span>
-                            <span className="min-w-0">
-                              <span className={`block text-[11px] font-bold ${isActive ? 'text-slate-900' : 'text-slate-600'}`}>{step.label}</span>
-                              <span className="mt-0.5 block truncate text-[9px] text-slate-400 sm:text-[10px]">{step.detail}</span>
-                            </span>
-                          </button>
-                        );
-                      })}
-                    </div>
+                    ))}
                   </div>
-                </div>
 
-                <div className="mt-4 flex flex-col gap-4 rounded-2xl border border-emerald-200 bg-white p-4 shadow-[0_14px_34px_-28px_rgba(16,185,129,0.35)] sm:flex-row sm:items-center sm:justify-between sm:p-5">
-                  <div className="flex items-start gap-3">
-                    <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-                      <Flame className="h-4 w-4" />
-                    </span>
-                    <div>
-                      <div className="flex flex-wrap items-center gap-2">
-                        <p className="text-xs font-bold text-slate-900">High-intent opportunity</p>
-                        <span className="rounded-full border border-rose-200 bg-white px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-rose-600">Hot lead</span>
-                      </div>
-                      <p className="mt-1.5 text-[11px] leading-4 text-slate-500">Next best action: Schedule a VIP property consultation.</p>
-                    </div>
+                  <div className="mx-3.5 mb-3 flex items-center justify-center gap-1.5 rounded-lg bg-emerald-50 py-2 text-[8px] font-black uppercase tracking-[0.12em] text-emerald-700">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                    Ready for sales handover
                   </div>
-                  <button
-                    type="button"
-                    onClick={openExperience}
-                    className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-cyan-200 bg-white px-4 py-2.5 text-[11px] font-bold text-cyan-700 transition-all hover:bg-cyan-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
-                  >
-                    Open opportunity
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                  </button>
                 </div>
               </div>
+            </div>
+
+            <div className="relative mt-4 grid grid-cols-2 gap-2 border-t border-slate-100 pt-3 sm:grid-cols-5">
+              {processSteps.map(({ label, detail, icon: Icon }, index) => {
+                const isActive = activeStep === index;
+                const isComplete = index < activeStep;
+                return (
+                  <button
+                    type="button"
+                    key={label}
+                    onClick={() => setActiveStep(index)}
+                    className={`group relative rounded-xl border px-2 py-2.5 text-left transition-all duration-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 ${
+                      isActive
+                        ? 'border-cyan-200 bg-cyan-50/70 shadow-[0_12px_28px_-22px_rgba(6,182,212,0.7)]'
+                        : 'border-transparent bg-white/70 hover:border-slate-200'
+                    } ${index === processSteps.length - 1 ? 'col-span-2 sm:col-span-1' : ''}`}
+                  >
+                    <span className={`flex h-7 w-7 items-center justify-center rounded-lg transition-all duration-500 ${isActive || isComplete ? 'bg-cyan-500 text-white' : 'bg-slate-100 text-slate-400'}`}>
+                      <Icon className="h-3.5 w-3.5" />
+                    </span>
+                    <span className={`mt-2 block text-[9px] font-black uppercase tracking-[0.1em] ${isActive ? 'text-cyan-800' : 'text-slate-700'}`}>{label}</span>
+                    <span className="mt-1 block text-[8px] leading-3 text-slate-400">{detail}</span>
+                    {index < processSteps.length - 1 && (
+                      <ArrowRight className="absolute -right-2 top-4 z-10 hidden h-3 w-3 text-cyan-300 sm:block" />
+                    )}
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>

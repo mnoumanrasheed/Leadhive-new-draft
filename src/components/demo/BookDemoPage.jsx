@@ -6,7 +6,7 @@ const FIELD_STYLE = 'w-full rounded-xl border border-slate-200 bg-slate-50 px-4 
 
 const DEMO_POINTS = [
   { icon: Sparkles, title: 'Built around your sales motion', copy: 'We tailor the walkthrough to your industry, qualification rules and team workflow.' },
-  { icon: Clock3, title: '20 focused minutes', copy: 'A useful working session—no generic slides or lengthy sales pitch.' },
+  { icon: Clock3, title: '20 focused minutes', copy: 'A useful working session, no generic slides or lengthy sales pitch.' },
   { icon: ShieldCheck, title: 'Safe to explore', copy: 'Use illustrative scenarios first; no system connection is required for the demo.' },
 ];
 

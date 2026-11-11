@@ -149,7 +149,7 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
                     <div
                       key={ind.id}
                       onClick={() => setSelectedIndustryId(ind.id)}
-                      className={`cursor-pointer rounded-2xl border p-5 transition-all text-left flex flex-col justify-between ${
+                      className={`h-full cursor-pointer rounded-2xl border p-5 transition-all text-left flex flex-col justify-between ${
                         isSelected 
                           ? 'bg-white border-brand-500 ring-2 ring-brand-300 shadow-brand' 
                           : 'bg-white border-slate-200 hover:border-slate-300 shadow-subtle'
@@ -171,7 +171,7 @@ export function ExperienceCentre({ initialIndustryId = 'real-estate', onOpenBook
 
                         <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] space-y-1">
                           <p className="text-slate-400">Sample Scenario:</p>
-                          <p className="font-semibold text-slate-800 line-clamp-1">"{ind.defaultLead.requirement}"</p>
+                          <p className="font-semibold leading-4 text-slate-800 whitespace-normal">{ind.description}</p>
                           <p className="text-rose-600 font-bold">Target Score: {ind.defaultLead.score}/100 ({ind.defaultLead.temperature})</p>
                         </div>
                       </div>

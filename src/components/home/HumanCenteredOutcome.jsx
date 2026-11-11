@@ -37,7 +37,7 @@ export function HumanCenteredOutcome() {
               AI does the prep. <span className="text-cyan-600">Your team builds the relationship.</span>
             </h2>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
-              LeadHive turns each incoming conversation into a clear, sales-ready brief—so people spend their time advising buyers, not chasing missing details.
+              LeadHive turns each incoming conversation into a clear, sales-ready brief, so people spend their time advising buyers, not chasing missing details.
             </p>
 
             <div className="mt-9 grid gap-3">
