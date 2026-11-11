@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import {
   Activity,
-  ArrowRight,
   Eye,
   FileCheck2,
   MessageCircle,
-  ShieldCheck,
-  Sparkles,
   Trophy,
 } from 'lucide-react';
 
-export function OperatingModel({ onNavigate }) {
+export function OperatingModel() {
   const [activeStep, setActiveStep] = useState(0);
   const steps = [
     {
@@ -135,25 +132,6 @@ export function OperatingModel({ onNavigate }) {
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col gap-5 rounded-3xl border border-cyan-100 bg-white/90 p-5 shadow-[0_18px_50px_-35px_rgba(8,145,178,0.38)] backdrop-blur-md sm:p-6 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex items-start gap-4">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100">
-              <ShieldCheck className="h-5 w-5" />
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-slate-900">Every action stays inside your guardrails.</p>
-              <p className="mt-1 text-sm leading-relaxed text-slate-500">Approved knowledge, business rules, and complete conversation context travel with every opportunity.</p>
-            </div>
-          </div>
-          <button
-            onClick={() => onNavigate('experience')}
-            className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-cyan-500 px-5 py-3 text-sm font-bold text-white transition-all hover:bg-cyan-600 hover:shadow-[0_10px_35px_rgba(6,182,212,0.3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
-          >
-            <Sparkles className="h-4 w-4" />
-            Explore live processing
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </button>
-        </div>
       </div>
     </section>
   );

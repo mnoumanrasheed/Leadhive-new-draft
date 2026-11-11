@@ -58,7 +58,7 @@ export function Navbar({ activeRoute, onNavigate, onOpenBooking }) {
               }}
               className="px-3 py-2 rounded-lg transition-colors hover:bg-slate-50 hover:text-slate-900"
             >
-              Experience Centre
+              Industries
             </button>
             <button
               onClick={() => handleNavClick('home', 'contact-section')}
@@ -127,7 +127,7 @@ export function Navbar({ activeRoute, onNavigate, onOpenBooking }) {
               }}
               className="px-3 py-2 text-left rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50"
             >
-              Experience Centre
+              Industries
             </button>
           </div>
 
